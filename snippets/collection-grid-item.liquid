@@ -4,8 +4,8 @@
     assign background_position = 'center center'
   endunless
 
-  if settings.collection_grid_image == 'collection' and collection.image
-    assign collection_image = collection.image
+  if settings.collection_grid_image == 'collection' and collection.featured_image
+    assign collection_image = collection.featured_image
   else
     assign collection_image = collection.products.first.featured_media.preview_image
   endif
@@ -53,7 +53,7 @@
         -%}
       </div>
     {%- endif -%}
-        <img src="{{ collection.featured_image }}">
+        <img src="{{ collection.featured_image | image_url }}">
 
 
     <span
