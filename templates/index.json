@@ -1,55 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "shoppable-hero": {
-      "type": "shoppable-hero",
+    "slideshow_DqdUqf": {
+      "type": "slideshow",
       "blocks": {
-        "hotspot-1": {
-          "type": "hotspot",
+        "image_DPCq6N": {
+          "type": "image",
           "settings": {
-            "product": "the-riva-tank",
-            "vertical_position": 51,
-            "horizontal_position": 22,
-            "vertical_position_mobile": 50,
-            "horizontal_position_mobile": 50
-          }
-        },
-        "hotspot-2": {
-          "type": "hotspot",
-          "settings": {
-            "product": "the-lena-midi",
-            "vertical_position": 50,
-            "horizontal_position": 57,
-            "vertical_position_mobile": 35,
-            "horizontal_position_mobile": 55
-          }
-        },
-        "hotspot-3": {
-          "type": "hotspot",
-          "settings": {
-            "product": "the-cami",
-            "vertical_position": 73,
-            "horizontal_position": 75,
-            "vertical_position_mobile": 55,
-            "horizontal_position_mobile": 75
+            "top_subheading": "",
+            "title": "Street Luxary,\n<strong>Redefined</strong>",
+            "title_size": 80,
+            "subheading": "Luxury isn't purchased-it's earned. Discover premium essentials designed for those who wear their worth.",
+            "link": "",
+            "link_text": "Explore",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-left",
+            "image": "shopify://shop_images/Splurg_banner.png",
+            "parallax_direction": "top",
+            "overlay_opacity": 20
           }
         }
       },
-      "block_order": ["hotspot-1", "hotspot-2", "hotspot-3"],
-      "name": "t:kit.labels.shoppable_hero",
+      "block_order": [
+        "image_DPCq6N"
+      ],
+      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
       "settings": {
-        "image": "",
-        "text_protection": 20,
-        "preheading": "",
-        "heading": "Easy by design",
-        "heading_size": "lg",
-        "text": "Soft texture, effortless movement, and warm-weather pieces designed to be worn on repeat.",
-        "button_label": "Shop Linen",
-        "button_link": "",
-        "color_accent": "#ffffff",
-        "text_alignment": "left",
-        "text_position": "bottom-left",
-        "hotspot_style": "plus",
-        "hotspot_color": "#ffffff"
+        "section_height": "650px",
+        "mobile_height": "auto",
+        "parallax": false,
+        "style": "bars",
+        "autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "featured-collections": {
@@ -88,7 +80,12 @@
           }
         }
       },
-      "block_order": ["collection-1", "collection-2", "collection-3", "collection-4"],
+      "block_order": [
+        "collection-1",
+        "collection-2",
+        "collection-3",
+        "collection-4"
+      ],
       "name": "t:sections.featured-collections.presets.collection_list.name",
       "settings": {
         "title": "",
@@ -125,7 +122,6 @@
             "cta_link1": "",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "",
             "video_url": "",
             "width": "50",
             "height": 800,
@@ -146,7 +142,6 @@
             "cta_link1": "",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "",
             "video_url": "",
             "width": "50",
             "height": 800,
@@ -157,7 +152,10 @@
           }
         }
       },
-      "block_order": ["advanced-1", "advanced-2"],
+      "block_order": [
+        "advanced-1",
+        "advanced-2"
+      ],
       "name": "t:sections.promo-grid.presets.promotional_grid.name",
       "settings": {
         "full_width": true,
@@ -201,9 +199,7 @@
       "type": "text-and-image",
       "name": "t:sections.text-and-image.presets.image_with_text.name",
       "settings": {
-        "image": "",
         "image_mask": "none",
-        "image2": "",
         "image2_mask": "none",
         "subtitle": "",
         "title": "",
@@ -236,13 +232,14 @@
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
-            "image": "",
             "parallax_direction": "top",
             "overlay_opacity": 20
           }
         }
       },
-      "block_order": ["image-1"],
+      "block_order": [
+        "image-1"
+      ],
       "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
       "settings": {
         "section_height": "650px",
@@ -266,7 +263,6 @@
         "image-2": {
           "type": "image",
           "settings": {
-            "image": "",
             "link": "",
             "heading": "Soft Neutrals"
           }
@@ -288,7 +284,6 @@
         "image-5": {
           "type": "image",
           "settings": {
-            "image": "",
             "link": "",
             "heading": "The Lookbook"
           }
@@ -296,7 +291,6 @@
         "image-6": {
           "type": "image",
           "settings": {
-            "image": "",
             "link": "",
             "heading": "Journal"
           }
@@ -304,13 +298,20 @@
         "image-7": {
           "type": "image",
           "settings": {
-            "image": "",
             "link": "",
             "heading": "Gift Guide"
           }
         }
       },
-      "block_order": ["image-1", "image-2", "image-3", "image-4", "image-5", "image-6", "image-7"],
+      "block_order": [
+        "image-1",
+        "image-2",
+        "image-3",
+        "image-4",
+        "image-5",
+        "image-6",
+        "image-7"
+      ],
       "name": "t:sections.image-grid.presets.image_grid.name",
       "settings": {
         "heading": "",
@@ -356,7 +357,11 @@
           }
         }
       },
-      "block_order": ["text-block-1", "text-block-2", "text-block-3"],
+      "block_order": [
+        "text-block-1",
+        "text-block-2",
+        "text-block-3"
+      ],
       "name": "t:common.text_with_icons.presets.text_with_icons.name",
       "settings": {
         "title": "",
@@ -371,7 +376,7 @@
     }
   },
   "order": [
-    "shoppable-hero",
+    "slideshow_DqdUqf",
     "featured-collections",
     "featured-collection",
     "promo-grid",
