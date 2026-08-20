@@ -47,48 +47,48 @@
     "featured-collections": {
       "type": "featured-collections",
       "blocks": {
-        "collection-1": {
+        "collection_weHrif": {
           "type": "collection",
           "settings": {
-            "collection": "2026-tops",
+            "collection": "black-label",
             "title": "",
             "focal_point": "center center"
           }
         },
-        "collection-2": {
+        "collection_RgKPDx": {
           "type": "collection",
           "settings": {
-            "collection": "2026-bottoms",
+            "collection": "black-label-copy",
             "title": "",
             "focal_point": "center center"
           }
         },
-        "collection-3": {
+        "collection_Ubm3jM": {
           "type": "collection",
           "settings": {
-            "collection": "2026-dresses",
+            "collection": "signature-crest-copy",
             "title": "",
             "focal_point": "center center"
           }
         },
-        "collection-4": {
+        "collection_kp4jd6": {
           "type": "collection",
           "settings": {
-            "collection": "2026-layers",
+            "collection": "wear-your-worth-copy",
             "title": "",
             "focal_point": "center center"
           }
         }
       },
       "block_order": [
-        "collection-1",
-        "collection-2",
-        "collection-3",
-        "collection-4"
+        "collection_weHrif",
+        "collection_RgKPDx",
+        "collection_Ubm3jM",
+        "collection_kp4jd6"
       ],
       "name": "t:sections.featured-collections.presets.collection_list.name",
       "settings": {
-        "title": "",
+        "title": "The Collections",
         "heading_size": "h2",
         "divider": false,
         "per_row": 4
