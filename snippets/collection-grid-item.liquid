@@ -4,10 +4,20 @@
     assign background_position = 'center center'
   endunless
 
-  if settings.collection_grid_image == 'collection' and collection.featured_image
-    assign collection_image = collection.featured_image
+  assign collection_image = blank
+
+  if settings.collection_grid_image == 'collection'
+    if collection.featured_image != blank
+      assign collection_image = collection.featured_image
+    elsif collection.products.first.featured_media != blank
+      assign collection_image = collection.products.first.featured_media.preview_image
+    endif
   else
-    assign collection_image = collection.products.first.featured_media.preview_image
+    if collection.products.first.featured_media != blank
+      assign collection_image = collection.products.first.featured_media.preview_image
+    elsif collection.featured_image != blank
+      assign collection_image = collection.featured_image
+    endif
   endif
 
   if block.settings.title != blank
@@ -21,6 +31,7 @@
       assign title_output = collection.title | escape
     endif
   endif
+
 -%}
 
 <div class="grid__item {{ gridView }}" {{ block.shopify_attributes }}>
@@ -53,7 +64,6 @@
         -%}
       </div>
     {%- endif -%}
-        <img src="{{ collection.featured_image | image_url }}">
 
 
     <span
