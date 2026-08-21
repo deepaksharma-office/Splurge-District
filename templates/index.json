@@ -239,6 +239,89 @@
         "divider": false,
         "per_row": 4
       }
+    },
+    "testimonial_RtALxb": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_FyFFRq": {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "rating": 5,
+            "review": "<p>\"The weight of the fabric, the drape, the finishing — this is the closest streetwear has come to real luxury. It feels like armor and silk at once.\"</p>",
+            "customer_name": "Marcus Bell",
+            "product_name": "Stealth Heavyweight Hoodie"
+          }
+        },
+        "testimonial_VTjzEJ": {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "rating": 5,
+            "review": "<p>\"Every detail is intentional. Splurge District doesn't sell clothes, they sell a certain confidence. I've never had compliments like this.\"</p>",
+            "customer_name": "Devin Ortega",
+            "product_name": "Black Label Zip Hoodie"
+          }
+        },
+        "testimonial_DbPiJP": {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "rating": 5,
+            "review": "<p>\"Editorial quality you can actually wear. The Chapter XXIV jacket is the best single piece in my wardrobe. Worth every dollar.\"</p>",
+            "customer_name": "Julian Reyes",
+            "product_name": "Chapter XXIV Wool Jacket"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_FyFFRq",
+        "testimonial_VTjzEJ",
+        "testimonial_DbPiJP"
+      ],
+      "name": "Testimonials slider",
+      "settings": {
+        "eyebrow": "The Verdict",
+        "show_eyebrow_line": true,
+        "heading": "Testimonials",
+        "background_color": "#f6f3ec",
+        "card_divider_color": "#dedbd3",
+        "eyebrow_color": "#d9ad28",
+        "eyebrow_size": 10,
+        "heading_color": "#080808",
+        "heading_size": 52,
+        "heading_size_mobile": 38,
+        "star_color": "#ddb225",
+        "star_size": 16,
+        "review_color": "#454545",
+        "review_size": 14,
+        "name_color": "#171717",
+        "name_size": 13,
+        "product_color": "#88857f",
+        "product_size": 11,
+        "card_padding_horizontal": 40,
+        "card_padding_vertical": 20,
+        "card_padding_horizontal_mobile": 10,
+        "card_padding_vertical_mobile": 15,
+        "heading_bottom_spacing": 60,
+        "heading_bottom_spacing_mobile": 35,
+        "padding_top": 90,
+        "padding_bottom": 90,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "divider": false,
+        "slider_type": "loop",
+        "perPageDesktop": 3,
+        "perPageMobile": 1,
+        "perMove": 1,
+        "gap": 0,
+        "gap_mobile": 0,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "transition_speed": 700,
+        "pause_on_hover": true,
+        "pause_on_focus": true
+      }
     }
   },
   "order": [
@@ -247,6 +330,7 @@
     "featured_collection_UJa8DV",
     "timer_REEXBq",
     "text_and_image_wbtQUE",
-    "featured_collections_tz8jMk"
+    "featured_collections_tz8jMk",
+    "testimonial_RtALxb"
   ]
 }
