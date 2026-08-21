@@ -1,0 +1,288 @@
+{%- liquid
+  assign hero_id = 'LuxuryHero-' | append: section.id
+-%}
+
+<section
+  id="{{ hero_id }}"
+  class="luxury-hero"
+  data-section-id="{{ section.id }}"
+  data-section-type="luxury-hero-slideshow"
+  style="
+    --hero-height-desktop: {{ section.settings.desktop_height }}px;
+    --hero-height-mobile: {{ section.settings.mobile_height }}px;
+    --hero-section-bg: {{ section.settings.background_color }};
+  "
+>
+  <div
+    id="splide-{{ section.id }}"
+    class="splide luxury-hero__splide"
+    style="visibility: hidden;"
+    aria-label="{{ section.settings.accessibility_label | escape }}"
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% content_for 'blocks' %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% render 'splide-slider',
+  slider_id: section.id,
+  section_id: section.id
+%}
+
+<style>
+  #{{ hero_id }} {
+    width: 100%;
+    height: var(--hero-height-desktop);
+    min-height: 1px;
+    overflow: hidden;
+    background: var(--hero-section-bg);
+  }
+
+  #{{ hero_id }} .luxury-hero__splide,
+  #{{ hero_id }} .splide__track,
+  #{{ hero_id }} .splide__list,
+  #{{ hero_id }} .splide__slide {
+    height: 100%;
+  }
+
+  #{{ hero_id }} .splide__track {
+    overflow: hidden;
+  }
+
+  #{{ hero_id }} .splide__list {
+    align-items: stretch;
+  }
+
+  #{{ hero_id }} .splide__slide {
+    min-height: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    #{{ hero_id }} {
+      height: var(--hero-height-mobile);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury hero slideshow",
+  "class": "luxury-hero-section",
+  "blocks": [
+    {
+      "type": "_hero-slide"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero size"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop height",
+      "min": 400,
+      "max": 1000,
+      "step": 10,
+      "default": 680,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile height",
+      "min": 420,
+      "max": 900,
+      "step": 10,
+      "default": 650,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fallback background",
+      "default": "#050505"
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Hero slideshow"
+    },
+
+    {
+      "type": "header",
+      "content": "Splide settings"
+    },
+    {
+      "type": "select",
+      "id": "slider_type",
+      "label": "Slider type",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "loop",
+          "label": "Loop"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "loop"
+    },
+    {
+      "type": "range",
+      "id": "perPageDesktop",
+      "label": "Slides per view - desktop",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "info": "Keep this at 1 for a standard full-width hero."
+    },
+    {
+      "type": "text",
+      "id": "perPageMobile",
+      "label": "Slides per view - mobile",
+      "default": "1",
+      "info": "Keep this at 1 for a standard full-width hero."
+    },
+    {
+      "type": "range",
+      "id": "perMove",
+      "label": "Slides to move",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Desktop gap",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Mobile gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "unit": "s"
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition speed",
+      "min": 300,
+      "max": 2000,
+      "step": 100,
+      "default": 800,
+      "unit": "ms"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_focus",
+      "label": "Pause on focus",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury hero slideshow",
+      "category": "Banners",
+      "blocks": {
+        "slide_1": {
+          "type": "_hero-slide",
+          "settings": {
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_left": 0,
+            "padding_right": 0
+          },
+          "blocks": {
+            "title_1": {
+              "type": "_hero-title",
+              "settings": {
+                "text": "Street Luxury,"
+              }
+            },
+            "title_2": {
+              "type": "_hero-title",
+              "settings": {
+                "text": "Redefined",
+                "text_color": "#d7a52b"
+              }
+            },
+            "content": {
+              "type": "_hero-content",
+              "settings": {
+                "text": "<p>Luxury isn't purchased—it’s earned. Discover premium essentials designed for those who wear their worth.</p>"
+              }
+            },
+            "buttons": {
+              "type": "_hero-buttons"
+            }
+          },
+          "block_order": ["title_1", "title_2", "content", "buttons"]
+        }
+      },
+      "block_order": ["slide_1"]
+    }
+  ]
+}
+{% endschema %}
