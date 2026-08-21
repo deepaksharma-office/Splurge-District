@@ -200,17 +200,17 @@
                 data-aos="overflow__animation"
               {% endif %}
             >
-               {%- liquid
-          capture gridView
-            render 'products_per_row', products_per_row: per_row, style: 'fractions'
-          endcapture
+              {%- liquid
+                capture gridView
+                  render 'products_per_row', products_per_row: per_row, style: 'fractions'
+                endcapture
 
-          if mobile_scrollable
-            assign fallback = '39vw'
-          else
-            assign fallback = 'variable'
-          endif
-        -%}
+                if mobile_scrollable
+                  assign fallback = '39vw'
+                else
+                  assign fallback = 'variable'
+                endif
+              -%}
 
               {%- if section.settings.home_featured_products == blank
                 or collections[section.settings.home_featured_products].empty?
