@@ -17,8 +17,9 @@
         "content_bJrtMV": {
           "type": "content",
           "settings": {
+            "logo": "shopify://shop_images/dbebfbc3e6166cc392df73796057a4cd037917ed_8ee9be86-86d0-438f-bd16-2ebeba8507ef.png",
             "show_shop_name": true,
-            "logo_width": 180,
+            "logo_width": 240,
             "text": "<p>Premium streetwear from the fashion house floor. Wear your worth.</p>",
             "social_label": "Follow Us"
           }
@@ -34,21 +35,21 @@
           "type": "menu",
           "settings": {
             "heading": "Customer Care",
-            "menu": ""
+            "menu": "customer-care-1"
           }
         },
         "menu_ihnqcr": {
           "type": "menu",
           "settings": {
             "heading": "About",
-            "menu": ""
+            "menu": "about"
           }
         },
         "menu_jVjBfE": {
           "type": "menu",
           "settings": {
             "heading": "Legal",
-            "menu": ""
+            "menu": "legal"
           }
         }
       },
