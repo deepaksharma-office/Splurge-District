@@ -326,6 +326,10 @@
     "instafeed_TTMirf": {
       "type": "instafeed",
       "blocks": {
+        "image_JFVRXh": {
+          "type": "image",
+          "settings": {}
+        },
         "image_NEe4eJ": {
           "type": "image",
           "settings": {}
@@ -344,6 +348,7 @@
         }
       },
       "block_order": [
+        "image_JFVRXh",
         "image_NEe4eJ",
         "image_Y8MQrK",
         "image_rrEiqk",
