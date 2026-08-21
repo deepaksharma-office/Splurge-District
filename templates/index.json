@@ -98,9 +98,9 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
-        "title": "All New",
+        "title": "New Arrivals",
         "heading_size": "h2",
-        "home_featured_products": "2026-new",
+        "home_featured_products": "drinkware-copy",
         "per_row": 5,
         "rows": 1,
         "mobile_scrollable": true,
