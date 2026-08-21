@@ -322,6 +322,59 @@
         "pause_on_hover": true,
         "pause_on_focus": true
       }
+    },
+    "instafeed_TTMirf": {
+      "type": "instafeed",
+      "blocks": {
+        "image_NEe4eJ": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_Y8MQrK": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_rrEiqk": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_gBfKYY": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_NEe4eJ",
+        "image_Y8MQrK",
+        "image_rrEiqk",
+        "image_gBfKYY"
+      ],
+      "name": "Instagram gallery",
+      "settings": {
+        "eyebrow": "@splurgedistrict",
+        "show_lines": true,
+        "line_width": 28,
+        "heading": "Follow Us on Instagram",
+        "background_color": "#070707",
+        "heading_color": "#ffffff",
+        "eyebrow_color": "#d5ae30",
+        "line_color": "#d5ae30",
+        "heading_size": 42,
+        "heading_size_mobile": 30,
+        "eyebrow_size": 10,
+        "full_width": true,
+        "image_gap": 6,
+        "image_gap_mobile": 8,
+        "mobile_slide_width": 80,
+        "mobile_side_padding": 16,
+        "header_bottom_spacing": 35,
+        "header_bottom_spacing_mobile": 25,
+        "padding_top": 70,
+        "padding_bottom": 0,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 0,
+        "divider": false
+      }
     }
   },
   "order": [
@@ -331,6 +384,7 @@
     "timer_REEXBq",
     "text_and_image_wbtQUE",
     "featured_collections_tz8jMk",
-    "testimonial_RtALxb"
+    "testimonial_RtALxb",
+    "instafeed_TTMirf"
   ]
 }
