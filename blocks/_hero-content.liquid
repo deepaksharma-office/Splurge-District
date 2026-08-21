@@ -1,0 +1,137 @@
+<div
+  class="hero-content-block rte"
+  {{ block.shopify_attributes }}
+  style="
+    --hero-content-color: {{ block.settings.text_color }};
+    --hero-content-size: {{ block.settings.font_size }}px;
+    --hero-content-size-mobile: {{ block.settings.font_size_mobile }}px;
+    --hero-content-line-height: {{ block.settings.line_height | divided_by: 100.0 }};
+    --hero-content-max-width: {{ block.settings.max_width }}px;
+    --hero-content-margin-top: {{ block.settings.margin_top }}px;
+    --hero-content-margin-bottom: {{ block.settings.margin_bottom }}px;
+  "
+>
+  {{ block.settings.text }}
+</div>
+
+{% stylesheet %}
+  .hero-content-block {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--hero-content-max-width);
+    margin-top: var(--hero-content-margin-top);
+    margin-bottom: var(--hero-content-margin-bottom);
+    color: var(--hero-content-color);
+    font-size: var(--hero-content-size);
+    line-height: var(--hero-content-line-height);
+  }
+
+  .hero-content-block p,
+  .hero-content-block a,
+  .hero-content-block li {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .hero-content-block p {
+    margin-top: 0;
+  }
+
+  .hero-content-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero-content-block {
+      font-size: var(--hero-content-size-mobile);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero content",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Content",
+      "default": "<p>Luxury isn't purchased—it’s earned. Discover premium essentials designed for those who wear their worth.</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Desktop font size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Mobile font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line height",
+      "min": 100,
+      "max": 200,
+      "step": 5,
+      "default": 145,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 200,
+      "max": 900,
+      "step": 20,
+      "default": 560,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 22,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero content"
+    }
+  ]
+}
+{% endschema %}

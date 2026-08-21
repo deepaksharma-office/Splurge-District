@@ -1,0 +1,164 @@
+{%- assign heading_tag = block.settings.heading_tag -%}
+
+<{{ heading_tag }}
+  class="hero-title-block"
+  {{ block.shopify_attributes }}
+  style="
+    --hero-title-color: {{ block.settings.text_color }};
+    --hero-title-accent: {{ block.settings.accent_color }};
+    --hero-title-size: {{ block.settings.font_size }}px;
+    --hero-title-size-mobile: {{ block.settings.font_size_mobile }}px;
+    --hero-title-weight: {{ block.settings.font_weight }};
+    --hero-title-line-height: {{ block.settings.line_height | divided_by: 100.0 }};
+    --hero-title-max-width: {{ block.settings.max_width }}px;
+    --hero-title-margin-top: {{ block.settings.margin_top }}px;
+    --hero-title-margin-bottom: {{ block.settings.margin_bottom }}px;
+  "
+>
+  {{ block.settings.text }}
+</{{ heading_tag }}>
+
+{% stylesheet %}
+  .hero-title-block {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--hero-title-max-width);
+    margin-top: var(--hero-title-margin-top);
+    margin-bottom: var(--hero-title-margin-bottom);
+    color: var(--hero-title-color);
+    font-size: var(--hero-title-size);
+    font-weight: var(--hero-title-weight);
+    line-height: var(--hero-title-line-height);
+    letter-spacing: -0.025em;
+  }
+
+  .hero-title-block strong,
+  .hero-title-block em {
+    color: var(--hero-title-accent);
+    font-style: normal;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero-title-block {
+      font-size: var(--hero-title-size-mobile);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero title",
+  "tag": null,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Title",
+      "default": "Street Luxury"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "HTML tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Bold / italic accent color",
+      "default": "#d7a52b"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Desktop font size",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "default": 68,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Mobile font size",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "default": 46,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line height",
+      "min": 80,
+      "max": 150,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 200,
+      "max": 1000,
+      "step": 20,
+      "default": 680,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero title"
+    }
+  ]
+}
+{% endschema %}
