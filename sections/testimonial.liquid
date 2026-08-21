@@ -1,0 +1,951 @@
+{%- liquid
+  assign splide_config = '{"arrows":false,"pagination":false}'
+-%}
+
+{%- if section.settings.divider -%}
+  <div class="section--divider">
+{%- endif -%}
+
+<div
+  id="TestimonialsSection-{{ section.id }}"
+  class="testimonial-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="testimonial-slider"
+  style="
+    --testimonial-bg: {{ section.settings.background_color }};
+
+    --testimonial-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --testimonial-eyebrow-size: {{ section.settings.eyebrow_size }}px;
+
+    --testimonial-heading-color: {{ section.settings.heading_color }};
+    --testimonial-heading-size: {{ section.settings.heading_size }}px;
+    --testimonial-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+
+    --testimonial-star-color: {{ section.settings.star_color }};
+    --testimonial-star-size: {{ section.settings.star_size }}px;
+
+    --testimonial-review-color: {{ section.settings.review_color }};
+    --testimonial-review-size: {{ section.settings.review_size }}px;
+
+    --testimonial-name-color: {{ section.settings.name_color }};
+    --testimonial-name-size: {{ section.settings.name_size }}px;
+
+    --testimonial-product-color: {{ section.settings.product_color }};
+    --testimonial-product-size: {{ section.settings.product_size }}px;
+
+    --testimonial-divider-color: {{ section.settings.card_divider_color }};
+
+    --testimonial-card-padding-x: {{ section.settings.card_padding_horizontal }}px;
+    --testimonial-card-padding-y: {{ section.settings.card_padding_vertical }}px;
+
+    --testimonial-padding-top: {{ section.settings.padding_top }}px;
+    --testimonial-padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    --testimonial-mobile-padding-top: {{ section.settings.mobile_padding_top }}px;
+    --testimonial-mobile-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+
+    --testimonial-heading-bottom: {{ section.settings.heading_bottom_spacing }}px;
+  "
+>
+  <div class="testimonial-section__background">
+    <div class="page-width">
+
+      {%- comment -%}
+        ============================================================
+        SECTION HEADER
+        ============================================================
+      {%- endcomment -%}
+
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+        <div class="testimonial-section__header">
+
+          {%- if section.settings.eyebrow != blank -%}
+            <div class="testimonial-section__eyebrow">
+              {%- if section.settings.show_eyebrow_line -%}
+                <span class="testimonial-section__eyebrow-line"></span>
+              {%- endif -%}
+
+              <span>{{ section.settings.eyebrow }}</span>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.heading != blank -%}
+            <h2 class="testimonial-section__heading">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+
+        </div>
+      {%- endif -%}
+
+
+      {%- comment -%}
+        ============================================================
+        SPLIDE
+        ============================================================
+      {%- endcomment -%}
+
+      {%- if section.blocks.size > 0 -%}
+
+        <div
+          id="splide-{{ section.id }}"
+          class="splide testimonial-splide"
+          style="visibility: hidden;"
+        >
+          <div class="splide__track">
+            <ul class="splide__list">
+
+              {%- for block in section.blocks -%}
+
+                <li
+                  class="splide__slide relative"
+                  data-block-id="{{ block.id }}"
+                  data-slide-index="{{ forloop.index0 }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="testimonial-card">
+
+                    {%- comment -%}
+                      STARS
+                    {%- endcomment -%}
+
+                    {%- if block.settings.show_stars -%}
+                      <div
+                        class="testimonial-card__stars"
+                        aria-label="{{ block.settings.rating }} out of 5 stars"
+                      >
+                        {%- for i in (1..5) -%}
+                          <span
+                            class="testimonial-card__star{% if i > block.settings.rating %} testimonial-card__star--empty{% endif %}"
+                            aria-hidden="true"
+                          >
+                            ★
+                          </span>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+
+
+                    {%- comment -%}
+                      REVIEW
+                    {%- endcomment -%}
+
+                    {%- if block.settings.review != blank -%}
+                      <div class="testimonial-card__review rte">
+                        {{ block.settings.review }}
+                      </div>
+                    {%- endif -%}
+
+
+                    {%- comment -%}
+                      BOTTOM INFO
+                    {%- endcomment -%}
+
+                    <div class="testimonial-card__footer">
+
+                      {%- if block.settings.customer_name != blank -%}
+                        <div class="testimonial-card__name">
+                          {{ block.settings.customer_name }}
+                        </div>
+                      {%- endif -%}
+
+                      {%- if block.settings.product_name != blank -%}
+                        <div class="testimonial-card__product">
+                          {{ block.settings.product_name }}
+                        </div>
+                      {%- endif -%}
+
+                    </div>
+
+                  </div>
+                </li>
+
+              {%- endfor -%}
+
+            </ul>
+          </div>
+        </div>
+
+      {%- else -%}
+
+        <div class="testimonial-section__empty">
+          Add testimonial blocks to display reviews.
+        </div>
+
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.divider -%}
+  </div>
+{%- endif -%}
+
+
+{%- comment -%}
+  ================================================================
+  YOUR EXISTING SPLIDE INITIALIZER
+  ================================================================
+
+  perPageDesktop / perPageMobile are provided through section
+  settings below.
+
+  Arrows + pagination are force-disabled using config.
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  {% render 'splide-slider',
+    slider_id: section.id,
+    section_id: section.id,
+    config: splide_config
+  %}
+{%- endif -%}
+
+
+<style>
+  /* =============================================================
+     MAIN SECTION
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} {
+    width: 100%;
+    overflow: hidden;
+    background: var(--testimonial-bg);
+    padding-top: var(--testimonial-padding-top);
+    padding-bottom: var(--testimonial-padding-bottom);
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-section__background {
+    background: var(--testimonial-bg);
+  }
+
+
+  /* =============================================================
+     HEADER
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-section__header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--testimonial-heading-bottom);
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-section__eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin: 0 0 14px;
+
+    color: var(--testimonial-eyebrow-color);
+    font-size: var(--testimonial-eyebrow-size);
+    line-height: 1.2;
+    letter-spacing: 0.24em;
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-section__eyebrow-line {
+    width: 25px;
+    height: 1px;
+    display: block;
+    flex: 0 0 25px;
+    background: var(--testimonial-eyebrow-color);
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-section__heading {
+    margin: 0;
+    padding: 0;
+
+    color: var(--testimonial-heading-color);
+    font-size: var(--testimonial-heading-size);
+    line-height: 1.05;
+  }
+
+
+  /* =============================================================
+     SPLIDE
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-splide {
+    width: 100%;
+  }
+
+  #TestimonialsSection-{{ section.id }} .splide__track {
+    overflow: hidden;
+  }
+
+  #TestimonialsSection-{{ section.id }} .splide__list {
+    align-items: stretch;
+  }
+
+  #TestimonialsSection-{{ section.id }} .splide__slide {
+    height: auto;
+    display: flex;
+  }
+
+
+  /* =============================================================
+     TESTIMONIAL CARD
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding:
+      var(--testimonial-card-padding-y)
+      var(--testimonial-card-padding-x);
+  }
+
+
+  /* Vertical separator like reference */
+
+  #TestimonialsSection-{{ section.id }} .splide__slide:not(:last-child) .testimonial-card {
+    border-right: 1px solid var(--testimonial-divider-color);
+  }
+
+
+  /* =============================================================
+     STARS
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 25px;
+    line-height: 1;
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__star {
+    display: inline-block;
+    color: var(--testimonial-star-color);
+    font-size: var(--testimonial-star-size);
+    line-height: 1;
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__star--empty {
+    opacity: 0.2;
+  }
+
+
+  /* =============================================================
+     REVIEW
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__review {
+    color: var(--testimonial-review-color);
+    font-size: var(--testimonial-review-size);
+    line-height: 1.6;
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__review,
+  #TestimonialsSection-{{ section.id }} .testimonial-card__review p,
+  #TestimonialsSection-{{ section.id }} .testimonial-card__review a {
+    color: var(--testimonial-review-color);
+    font-size: var(--testimonial-review-size);
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__review p {
+    margin-top: 0;
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__review p:last-child {
+    margin-bottom: 0;
+  }
+
+
+  /* =============================================================
+     CUSTOMER INFORMATION
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__footer {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--testimonial-divider-color);
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__name {
+    margin: 0;
+
+    color: var(--testimonial-name-color);
+    font-size: var(--testimonial-name-size);
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  #TestimonialsSection-{{ section.id }} .testimonial-card__product {
+    margin-top: 6px;
+
+    color: var(--testimonial-product-color);
+    font-size: var(--testimonial-product-size);
+    line-height: 1.4;
+  }
+
+
+  /* =============================================================
+     EMPTY STATE
+     ============================================================= */
+
+  #TestimonialsSection-{{ section.id }} .testimonial-section__empty {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.6;
+  }
+
+
+  /* =============================================================
+     TABLET
+     ============================================================= */
+
+  @media screen and (max-width: 989px) {
+    #TestimonialsSection-{{ section.id }} .testimonial-card {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+
+
+  /* =============================================================
+     MOBILE
+     ============================================================= */
+
+  @media screen and (max-width: 768px) {
+    #TestimonialsSection-{{ section.id }} {
+      padding-top: var(--testimonial-mobile-padding-top);
+      padding-bottom: var(--testimonial-mobile-padding-bottom);
+    }
+
+    #TestimonialsSection-{{ section.id }} .testimonial-section__header {
+      margin-bottom: {{ section.settings.heading_bottom_spacing_mobile }}px;
+    }
+
+    #TestimonialsSection-{{ section.id }} .testimonial-section__heading {
+      font-size: var(--testimonial-heading-size-mobile);
+    }
+
+    #TestimonialsSection-{{ section.id }} .testimonial-section__eyebrow {
+      margin-bottom: 12px;
+    }
+
+    #TestimonialsSection-{{ section.id }} .testimonial-card {
+      padding:
+        {{ section.settings.card_padding_vertical_mobile }}px
+        {{ section.settings.card_padding_horizontal_mobile }}px;
+    }
+
+    #TestimonialsSection-{{ section.id }} .splide__slide .testimonial-card {
+      border-right: 0;
+    }
+
+    #TestimonialsSection-{{ section.id }} .testimonial-card__stars {
+      margin-bottom: 20px;
+    }
+
+    #TestimonialsSection-{{ section.id }} .testimonial-card__footer {
+      margin-top: 24px;
+      padding-top: 20px;
+    }
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Testimonials slider",
+  "class": "index-section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Verdict"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_eyebrow_line",
+      "label": "Show line before eyebrow",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+
+    {
+      "type": "header",
+      "content": "Section colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f6f3ec"
+    },
+    {
+      "type": "color",
+      "id": "card_divider_color",
+      "label": "Divider color",
+      "default": "#dedbd3"
+    },
+
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Color",
+      "default": "#d9ad28"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Font size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#080808"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop font size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "default": 52,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Mobile font size",
+      "min": 22,
+      "max": 55,
+      "step": 1,
+      "default": 38,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Stars"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#ddb225"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Review text"
+    },
+    {
+      "type": "color",
+      "id": "review_color",
+      "label": "Review color",
+      "default": "#454545"
+    },
+    {
+      "type": "range",
+      "id": "review_size",
+      "label": "Review font size",
+      "min": 11,
+      "max": 26,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Customer name"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name color",
+      "default": "#171717"
+    },
+    {
+      "type": "range",
+      "id": "name_size",
+      "label": "Name font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Product name"
+    },
+    {
+      "type": "color",
+      "id": "product_color",
+      "label": "Product color",
+      "default": "#88857f"
+    },
+    {
+      "type": "range",
+      "id": "product_size",
+      "label": "Product font size",
+      "min": 9,
+      "max": 22,
+      "step": 1,
+      "default": 11,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Card spacing"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_horizontal",
+      "label": "Desktop horizontal padding",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_vertical",
+      "label": "Desktop vertical padding",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_horizontal_mobile",
+      "label": "Mobile horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_vertical_mobile",
+      "label": "Mobile vertical padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 15,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Header spacing"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "label": "Space below heading - desktop",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing_mobile",
+      "label": "Space below heading - mobile",
+      "min": 15,
+      "max": 80,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top padding",
+      "min": 0,
+      "max": 180,
+      "step": 5,
+      "default": 90,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom padding",
+      "min": 0,
+      "max": 180,
+      "step": 5,
+      "default": 90,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top padding",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "Show section divider",
+      "default": false
+    },
+
+    {
+      "type": "header",
+      "content": "Splide settings"
+    },
+    {
+      "type": "select",
+      "id": "slider_type",
+      "label": "Slider type",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "loop",
+          "label": "Loop"
+        }
+      ],
+      "default": "loop"
+    },
+    {
+      "type": "range",
+      "id": "perPageDesktop",
+      "label": "Slides per view - desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "perPageMobile",
+      "label": "Slides per view - mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "perMove",
+      "label": "Slides to move",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Desktop slide gap",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Mobile slide gap",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "unit": "s"
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition speed",
+      "min": 300,
+      "max": 2000,
+      "step": 100,
+      "default": 700,
+      "unit": "ms"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_focus",
+      "label": "Pause on focus",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_stars",
+          "label": "Show stars",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "richtext",
+          "id": "review",
+          "label": "Review",
+          "default": "<p>Every detail is intentional. The quality and craftsmanship exceeded my expectations.</p>"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product name",
+          "default": "Product Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials slider",
+      "category": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "review": "<p>\"The weight of the fabric, the drape, the finishing — this is the closest streetwear has come to real luxury. It feels like armor and silk at once.\"</p>",
+            "customer_name": "Marcus Bell",
+            "product_name": "Stealth Heavyweight Hoodie",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "review": "<p>\"Every detail is intentional. Splurge District doesn't sell clothes, they sell a certain confidence. I've never had compliments like this.\"</p>",
+            "customer_name": "Devin Ortega",
+            "product_name": "Black Label Zip Hoodie",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "review": "<p>\"Editorial quality you can actually wear. The Chapter XXIV jacket is the best single piece in my wardrobe. Worth every dollar.\"</p>",
+            "customer_name": "Julian Reyes",
+            "product_name": "Chapter XXIV Wool Jacket",
+            "rating": 5
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "footer",
+      "header",
+      "custom.popups"
+    ]
+  }
+}
+{% endschema %}
