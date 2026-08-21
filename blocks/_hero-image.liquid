@@ -1,0 +1,174 @@
+<div
+  class="hero-image-block"
+  {{ block.shopify_attributes }}
+  style="
+    --hero-small-image-width: {{ block.settings.width }}px;
+    --hero-small-image-width-mobile: {{ block.settings.width_mobile }}px;
+    --hero-small-image-radius: {{ block.settings.border_radius }}px;
+    --hero-small-image-margin-top: {{ block.settings.margin_top }}px;
+    --hero-small-image-margin-bottom: {{ block.settings.margin_bottom }}px;
+    --hero-small-image-align: {{ block.settings.alignment }};
+    --hero-small-image-align-mobile: {{ block.settings.mobile_alignment }};
+  "
+>
+  {%- if block.settings.image != blank -%}
+    {{
+      block.settings.image
+      | image_url: width: 1200
+      | image_tag:
+        loading: 'lazy',
+        widths: '120, 180, 240, 320, 480, 640, 800, 1000, 1200',
+        sizes: '(max-width: 768px) 60vw, 500px',
+        class: 'hero-image-block__image'
+    }}
+  {%- else -%}
+    <div class="hero-image-block__placeholder">
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .hero-image-block {
+    position: relative;
+    z-index: 2;
+    width: min(100%, var(--hero-small-image-width));
+    margin-top: var(--hero-small-image-margin-top);
+    margin-bottom: var(--hero-small-image-margin-bottom);
+  }
+
+  .hero-image-block[style*="--hero-small-image-align: flex-start"] {
+    align-self: flex-start;
+  }
+
+  .hero-image-block[style*="--hero-small-image-align: center"] {
+    align-self: center;
+  }
+
+  .hero-image-block[style*="--hero-small-image-align: flex-end"] {
+    align-self: flex-end;
+  }
+
+  .hero-image-block__image,
+  .hero-image-block__placeholder,
+  .hero-image-block__placeholder svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-image-block__image,
+  .hero-image-block__placeholder {
+    border-radius: var(--hero-small-image-radius);
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero-image-block {
+      width: min(100%, var(--hero-small-image-width-mobile));
+    }
+
+    .hero-image-block[style*="--hero-small-image-align-mobile: flex-start"] {
+      align-self: flex-start;
+    }
+
+    .hero-image-block[style*="--hero-small-image-align-mobile: center"] {
+      align-self: center;
+    }
+
+    .hero-image-block[style*="--hero-small-image-align-mobile: flex-end"] {
+      align-self: flex-end;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "label": "Desktop width",
+      "min": 60,
+      "max": 800,
+      "step": 10,
+      "default": 240,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "width_mobile",
+      "label": "Mobile width",
+      "min": 60,
+      "max": 500,
+      "step": 10,
+      "default": 180,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Desktop alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Mobile alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 20,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image"
+    }
+  ]
+}
+{% endschema %}
