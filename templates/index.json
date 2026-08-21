@@ -101,8 +101,8 @@
         "title": "New Arrivals",
         "heading_size": "h2",
         "home_featured_products": "drinkware-copy",
-        "per_row": 5,
-        "rows": 1,
+        "per_row": 4,
+        "rows": 2,
         "mobile_scrollable": true,
         "view_all": false,
         "divider": true
