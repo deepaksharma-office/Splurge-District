@@ -31,117 +31,90 @@
     --ig-mobile-slide-width: {{ section.settings.mobile_slide_width }}%;
   "
 >
+  <div class="page-width">
+    <div class="instagram-gallery__inner">
+      {%- comment -%}
+        ============================================================
+        HEADER
+        ============================================================
+      {%- endcomment -%}
 
-  <div class="instagram-gallery__inner">
-
-    {%- comment -%}
-      ============================================================
-      HEADER
-      ============================================================
-    {%- endcomment -%}
-
-    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
-      <div class="instagram-gallery__header page-width">
-
-        {%- if section.settings.eyebrow != blank -%}
-          <div class="instagram-gallery__eyebrow">
-
-            {%- if section.settings.show_lines -%}
-              <span class="instagram-gallery__line"></span>
-            {%- endif -%}
-
-            <span>{{ section.settings.eyebrow }}</span>
-
-            {%- if section.settings.show_lines -%}
-              <span class="instagram-gallery__line"></span>
-            {%- endif -%}
-
-          </div>
-        {%- endif -%}
-
-        {%- if section.settings.heading != blank -%}
-          <h2 class="instagram-gallery__heading">
-            {{ section.settings.heading }}
-          </h2>
-        {%- endif -%}
-
-      </div>
-    {%- endif -%}
-
-
-    {%- comment -%}
-      ============================================================
-      IMAGE GRID / MOBILE SNAP SLIDER
-      ============================================================
-    {%- endcomment -%}
-
-    {%- if section.blocks.size > 0 -%}
-
-      <div
-        class="
-          instagram-gallery__media-wrapper
-          {% if section.settings.full_width == false %}
-            page-width
-          {% endif %}
-        "
-      >
-
-        <div class="instagram-gallery__grid">
-
-          {%- for block in section.blocks -%}
-
-            <div
-              class="instagram-gallery__item"
-              {{ block.shopify_attributes }}
-            >
-
-              {%- if block.settings.image != blank -%}
-
-                {{
-                  block.settings.image
-                  | image_url: width: 1200
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '300, 400, 500, 600, 800, 1000, 1200',
-                    sizes: '(max-width: 768px) 80vw, 25vw',
-                    class: 'instagram-gallery__image'
-                }}
-
-              {%- else -%}
-
-                <div class="instagram-gallery__placeholder">
-                  {{
-                    'image'
-                    | placeholder_svg_tag: 'placeholder-svg'
-                  }}
-                </div>
-
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+        <div class="instagram-gallery__header page-width">
+          {%- if section.settings.eyebrow != blank -%}
+            <div class="instagram-gallery__eyebrow">
+              {%- if section.settings.show_lines -%}
+                <span class="instagram-gallery__line"></span>
               {%- endif -%}
 
+              <span>{{ section.settings.eyebrow }}</span>
+
+              {%- if section.settings.show_lines -%}
+                <span class="instagram-gallery__line"></span>
+              {%- endif -%}
             </div>
+          {%- endif -%}
 
-          {%- endfor -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="instagram-gallery__heading">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
 
+      {%- comment -%}
+        ============================================================
+        IMAGE GRID / MOBILE SNAP SLIDER
+        ============================================================
+      {%- endcomment -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div
+          class="
+            instagram-gallery__media-wrapper
+            {% if section.settings.full_width == false %}
+              page-width
+            {% endif %}
+          "
+        >
+          <div class="instagram-gallery__grid">
+            {%- for block in section.blocks -%}
+              <div
+                class="instagram-gallery__item"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 400, 500, 600, 800, 1000, 1200',
+                      sizes: '(max-width: 768px) 80vw, 25vw',
+                      class: 'instagram-gallery__image'
+                  }}
+
+                {%- else -%}
+                  <div class="instagram-gallery__placeholder">
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
         </div>
 
-      </div>
-
-    {%- else -%}
-
-      <div class="instagram-gallery__empty page-width">
-        Add image blocks to create the gallery.
-      </div>
-
-    {%- endif -%}
-
+      {%- else -%}
+        <div class="instagram-gallery__empty page-width">Add image blocks to create the gallery.</div>
+      {%- endif -%}
+    </div>
   </div>
-
 </section>
 
 {%- if section.settings.divider -%}
   </div>
 {%- endif -%}
-
 
 <style>
   /* =============================================================
@@ -375,7 +348,6 @@
 
   }
 </style>
-
 
 {% schema %}
 {
@@ -646,11 +618,7 @@
     }
   ],
   "disabled_on": {
-    "groups": [
-      "footer",
-      "header",
-      "custom.popups"
-    ]
+    "groups": ["footer", "header", "custom.popups"]
   }
 }
 {% endschema %}
