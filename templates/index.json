@@ -328,23 +328,33 @@
       "blocks": {
         "image_JFVRXh": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/086b62f0179c63997bf20e55d182d0d7f5cb0d23_1.jpg"
+          }
         },
         "image_NEe4eJ": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/541aa7fb88769c82fdff5128ec858c97301b3dd1.jpg"
+          }
         },
         "image_Y8MQrK": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/aec0abbbb627017dc732c4a177234796ef43ec89.jpg"
+          }
         },
         "image_rrEiqk": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/21910b33277bacc5fca5c0e57b00aab296b43f21.jpg"
+          }
         },
         "image_gBfKYY": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/74c6dfd9f31aad54544201bc57d9df792a8fb32e_1.jpg"
+          }
         }
       },
       "block_order": [
