@@ -167,12 +167,86 @@
         "mobile_padding_bottom": 40,
         "divider": false
       }
+    },
+    "text_and_image_wbtQUE": {
+      "type": "text-and-image",
+      "name": "t:sections.text-and-image.presets.image_with_text.name",
+      "settings": {
+        "image": "shopify://shop_images/74c6dfd9f31aad54544201bc57d9df792a8fb32e.jpg",
+        "image_mask": "none",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "Wear Your Worth",
+        "heading_size": "h2",
+        "text": "<p>Splurge District was built on a single conviction — that what you wear should reflect what you know you're worth. Every garment is engineered from heavyweight fabrics, constructed with couture- grade finishing, and refined until nothing is left to prove.<br/><br/>This is not fast fashion. It is a wardrobe of intention. A quiet, confident luxury built for the street and the studio alike.</p>",
+        "button_label": "Discover Our Story",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "left",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true
+      }
+    },
+    "featured_collections_tz8jMk": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_GFVzUB": {
+          "type": "collection",
+          "settings": {
+            "collection": "black-label",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_dm7JLj": {
+          "type": "collection",
+          "settings": {
+            "collection": "black-label-copy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_apqdJk": {
+          "type": "collection",
+          "settings": {
+            "collection": "signature-crest-copy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "collection_Th7frn": {
+          "type": "collection",
+          "settings": {
+            "collection": "wear-your-worth-copy",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_GFVzUB",
+        "collection_dm7JLj",
+        "collection_apqdJk",
+        "collection_Th7frn"
+      ],
+      "name": "t:sections.featured-collections.presets.collection_list.name",
+      "settings": {
+        "title": "The Collections",
+        "heading_size": "h2",
+        "divider": false,
+        "per_row": 4
+      }
     }
   },
   "order": [
     "slideshow_DqdUqf",
     "featured-collections",
     "featured_collection_UJa8DV",
-    "timer_REEXBq"
+    "timer_REEXBq",
+    "text_and_image_wbtQUE",
+    "featured_collections_tz8jMk"
   ]
 }
