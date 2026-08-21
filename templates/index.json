@@ -145,8 +145,8 @@
         "transition_speed": 800,
         "show_arrows": false,
         "show_pagination": false,
-        "pause_on_hover": true,
-        "pause_on_focus": true
+        "pause_on_hover": false,
+        "pause_on_focus": false
       }
     },
     "featured-collections": {
