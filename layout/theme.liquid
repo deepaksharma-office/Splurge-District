@@ -12,6 +12,8 @@
   <link rel="dns-prefetch" href="https://ajax.googleapis.com">
   <link rel="dns-prefetch" href="https://maps.googleapis.com">
   <link rel="dns-prefetch" href="https://maps.gstatic.com">
+    <script src="{{ 'splide.js' | asset_url }}" defer="defer"></script>
+
 
   {%- if settings.favicon != blank -%}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
@@ -29,6 +31,8 @@
 
   {%- render 'font-face' -%}
   {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'splide.css' | asset_url | stylesheet_tag: preload: true }}
   {%- render 'css-variables' -%}
 
   <script>
