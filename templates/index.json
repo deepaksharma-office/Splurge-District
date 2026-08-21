@@ -93,10 +93,25 @@
         "divider": false,
         "per_row": 4
       }
+    },
+    "featured_collection_UJa8DV": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.featured_collection.name",
+      "settings": {
+        "title": "New Arrivals",
+        "heading_size": "h2",
+        "home_featured_products": "drinkware-copy",
+        "per_row": 4,
+        "rows": 2,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
     }
   },
   "order": [
     "slideshow_DqdUqf",
-    "featured-collections"
+    "featured-collections",
+    "featured_collection_UJa8DV"
   ]
 }
