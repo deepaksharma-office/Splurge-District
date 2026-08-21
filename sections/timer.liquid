@@ -1,0 +1,1199 @@
+{%- assign per_row = section.settings.per_row -%}
+{%- assign product_limit = per_row | times: section.settings.rows -%}
+{%- assign collection = collections[section.settings.home_featured_products] -%}
+{%- assign mobile_scrollable = section.settings.mobile_scrollable -%}
+
+{%- if per_row == 1 and product_limit == 1 -%}
+  {%- assign mobile_scrollable = false -%}
+{%- endif -%}
+
+{%- if section.settings.divider -%}
+  <div class="section--divider">
+{%- endif -%}
+
+<div
+  id="CollectionSection-{{ section.id }}"
+  class="black-label-featured"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection-grid"
+  data-context="featured-collection"
+  style="
+    --bl-section-bg: {{ section.settings.section_background }};
+    --bl-content-bg: {{ section.settings.content_background }};
+    --bl-content-width: {{ section.settings.content_width }}%;
+    --bl-gap: {{ section.settings.desktop_gap }}px;
+
+    --bl-padding-top: {{ section.settings.padding_top }}px;
+    --bl-padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    --bl-content-padding-y: {{ section.settings.content_padding_vertical }}px;
+    --bl-content-padding-x: {{ section.settings.content_padding_horizontal }}px;
+
+    --bl-overlay-color: {{ section.settings.overlay_color }};
+    --bl-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+
+    --bl-eyebrow-size: {{ section.settings.eyebrow_size }}px;
+    --bl-eyebrow-color: {{ section.settings.eyebrow_color }};
+
+    --bl-heading-size: {{ section.settings.heading_size }}px;
+    --bl-heading-mobile-size: {{ section.settings.heading_mobile_size }}px;
+    --bl-heading-color: {{ section.settings.heading_color }};
+
+    --bl-text-size: {{ section.settings.text_size }}px;
+    --bl-text-color: {{ section.settings.text_color }};
+
+    --bl-count-number-size: {{ section.settings.count_number_size }}px;
+    --bl-count-number-mobile-size: {{ section.settings.count_number_mobile_size }}px;
+    --bl-count-number-color: {{ section.settings.count_number_color }};
+
+    --bl-count-label-size: {{ section.settings.count_label_size }}px;
+    --bl-count-label-color: {{ section.settings.count_label_color }};
+
+    --bl-button-size: {{ section.settings.button_text_size }}px;
+    --bl-button-color: {{ section.settings.button_text_color }};
+    --bl-button-bg: {{ section.settings.button_background }};
+    --bl-button-border: {{ section.settings.button_border_color }};
+    --bl-button-radius: {{ section.settings.button_radius }}px;
+    --bl-button-padding-y: {{ section.settings.button_padding_vertical }}px;
+    --bl-button-padding-x: {{ section.settings.button_padding_horizontal }}px;
+
+    --bl-mobile-padding-y: {{ section.settings.mobile_content_padding_vertical }}px;
+    --bl-mobile-padding-x: {{ section.settings.mobile_content_padding_horizontal }}px;
+  "
+>
+  <div class="black-label-featured__background">
+    <div
+      class="page-width{% if mobile_scrollable %} black-label-featured__page-width{% endif %}"
+    >
+      <div class="black-label-featured__layout">
+
+        <div
+          class="black-label-featured__content"
+          {% if section.settings.background_image != blank %}
+            style="
+              background-image:
+                linear-gradient(
+                  rgba(0,0,0,0),
+                  rgba(0,0,0,0)
+                ),
+                url('{{ section.settings.background_image | image_url: width: 1800 }}');
+            "
+          {% endif %}
+        >
+          <div class="black-label-featured__overlay"></div>
+
+          <div class="black-label-featured__content-inner">
+
+            {%- if section.settings.eyebrow != blank -%}
+              <div class="black-label-featured__eyebrow">
+                {%- if section.settings.show_eyebrow_line -%}
+                  <span class="black-label-featured__eyebrow-line"></span>
+                {%- endif -%}
+
+                <span>{{ section.settings.eyebrow }}</span>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <h2 class="black-label-featured__title">
+                {{ section.settings.title }}
+              </h2>
+            {%- endif -%}
+
+            {%- if section.settings.description != blank -%}
+              <div class="black-label-featured__description rte">
+                {{ section.settings.description }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.show_countdown -%}
+              <div
+                class="black-label-featured__countdown"
+                data-black-label-countdown
+                data-end-date="{{ section.settings.countdown_date | escape }}"
+              >
+                <div class="black-label-featured__countdown-item">
+                  <span
+                    class="black-label-featured__countdown-number"
+                    data-countdown-days
+                  >
+                    00
+                  </span>
+                  <span class="black-label-featured__countdown-label">
+                    {{ section.settings.days_label }}
+                  </span>
+                </div>
+
+                <div class="black-label-featured__countdown-item">
+                  <span
+                    class="black-label-featured__countdown-number"
+                    data-countdown-hours
+                  >
+                    00
+                  </span>
+                  <span class="black-label-featured__countdown-label">
+                    {{ section.settings.hours_label }}
+                  </span>
+                </div>
+
+                <div class="black-label-featured__countdown-item">
+                  <span
+                    class="black-label-featured__countdown-number"
+                    data-countdown-minutes
+                  >
+                    00
+                  </span>
+                  <span class="black-label-featured__countdown-label">
+                    {{ section.settings.minutes_label }}
+                  </span>
+                </div>
+
+                <div class="black-label-featured__countdown-item">
+                  <span
+                    class="black-label-featured__countdown-number"
+                    data-countdown-seconds
+                  >
+                    00
+                  </span>
+                  <span class="black-label-featured__countdown-label">
+                    {{ section.settings.seconds_label }}
+                  </span>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.button_text != blank -%}
+              <div class="black-label-featured__button-wrapper">
+                <a
+                  {% if section.settings.button_link != blank %}
+                    href="{{ section.settings.button_link }}"
+                  {% else %}
+                    href="{{ collection.url }}"
+                  {% endif %}
+                  class="black-label-featured__button"
+                >
+                  {{ section.settings.button_text }}
+                </a>
+              </div>
+            {%- endif -%}
+
+          </div>
+        </div>
+
+        {%- comment -%}
+          ==========================================================
+          RIGHT PRODUCT AREA
+          Uses the theme's existing product card.
+          ==========================================================
+        {%- endcomment -%}
+
+        <div class="black-label-featured__products">
+
+          <div
+            {% if mobile_scrollable %}
+              class="grid-overflow-wrapper{% if product_limit == 1 %} grid-overflow-wrapper--single{% endif %}"
+            {% endif %}
+          >
+            <div
+              class="grid grid--uniform"
+              {% if mobile_scrollable %}
+                data-aos="overflow__animation"
+              {% endif %}
+            >
+               {%- liquid
+          capture gridView
+            render 'products_per_row', products_per_row: per_row, style: 'fractions'
+          endcapture
+
+          if mobile_scrollable
+            assign fallback = '39vw'
+          else
+            assign fallback = 'variable'
+          endif
+        -%}
+
+              {%- if section.settings.home_featured_products == blank
+                or collections[section.settings.home_featured_products].empty?
+                or collections[section.settings.home_featured_products].products_count == 0
+              -%}
+
+                {%- unless emptyState -%}
+                  {%- assign emptyState = true -%}
+                {%- endunless -%}
+
+                <div class="grid__item">
+                  <div class="grid grid--uniform">
+                    {%- for i in (1..product_limit) -%}
+                      <div
+                        class="grid__item grid-product {{ gridView }}"
+                        data-aos="row-of-{{ per_row }}"
+                      >
+                        <div class="grid-product__content">
+                          <a
+                            href="{{ product.url | within: collection }}"
+                            class="grid-product__link"
+                          >
+                            <div class="grid-product__image-mask">
+                              {%- capture current -%}
+                                {% cycle 1, 2, 3, 4, 5, 6 %}
+                              {%- endcapture -%}
+
+                              <div class="image-wrap">
+                                {{
+                                  'product-'
+                                  | append: current
+                                  | placeholder_svg_tag: 'placeholder-svg'
+                                }}
+                              </div>
+                            </div>
+
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">
+                                {{ 'home_page.onboarding.product_title' | t }}
+                              </div>
+
+                              <div class="grid-product__price">
+                                $29
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+
+              {%- else -%}
+
+                {%- for product in collections[section.settings.home_featured_products].products
+                  limit: product_limit
+                -%}
+                  {%- render 'product-grid-item',
+                    product: product,
+                    collection: collection,
+                    per_row: per_row,
+                    quick_shop_enable: settings.quick_shop_enable,
+                    fallback: fallback
+                  -%}
+                {%- endfor -%}
+
+              {%- endif -%}
+            </div>
+          </div>
+
+          {%- if section.settings.view_all -%}
+            <div class="black-label-featured__view-all">
+              <a
+                href="{{ collection.url }}"
+                class="btn btn--secondary"
+              >
+                {{ section.settings.view_all_text }}
+              </a>
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.divider -%}
+  </div>
+{%- endif -%}
+
+
+<style>
+  /* =============================================================
+     SECTION LAYOUT ONLY
+     Product cards continue using the theme's original styles.
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} {
+    background: var(--bl-section-bg);
+    padding-top: var(--bl-padding-top);
+    padding-bottom: var(--bl-padding-bottom);
+    overflow: hidden;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__layout {
+    display: flex;
+    align-items: stretch;
+    gap: var(--bl-gap);
+    width: 100%;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__content {
+    position: relative;
+    flex: 0 0 var(--bl-content-width);
+    width: var(--bl-content-width);
+    min-width: 0;
+    overflow: hidden;
+    background-color: var(--bl-content-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--bl-overlay-color);
+    opacity: var(--bl-overlay-opacity);
+    pointer-events: none;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__content-inner {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding:
+      var(--bl-content-padding-y)
+      var(--bl-content-padding-x);
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__products {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+
+  /* =============================================================
+     EYEBROW
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} .black-label-featured__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px;
+    font-size: var(--bl-eyebrow-size);
+    color: var(--bl-eyebrow-color);
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__eyebrow-line {
+    display: block;
+    width: 22px;
+    height: 1px;
+    flex: 0 0 22px;
+    background: var(--bl-eyebrow-color);
+  }
+
+
+  /* =============================================================
+     HEADING
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} .black-label-featured__title {
+    margin: 0;
+    padding: 0;
+    color: var(--bl-heading-color);
+    font-size: var(--bl-heading-size);
+    line-height: 1.05;
+  }
+
+
+  /* =============================================================
+     DESCRIPTION
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} .black-label-featured__description {
+    margin-top: 52px;
+    max-width: 500px;
+    color: var(--bl-text-color);
+    font-size: var(--bl-text-size);
+    line-height: 1.6;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__description p {
+    color: inherit;
+    font-size: inherit;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__description p:last-child {
+    margin-bottom: 0;
+  }
+
+
+  /* =============================================================
+     COUNTDOWN
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} .black-label-featured__countdown {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(18px, 3vw, 38px);
+    margin-top: 32px;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__countdown-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 45px;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__countdown-number {
+    display: block;
+    color: var(--bl-count-number-color);
+    font-size: var(--bl-count-number-size);
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__countdown-label {
+    display: block;
+    margin-top: 10px;
+    color: var(--bl-count-label-color);
+    font-size: var(--bl-count-label-size);
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+  }
+
+
+  /* =============================================================
+     BUTTON
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} .black-label-featured__button-wrapper {
+    margin-top: 34px;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding:
+      var(--bl-button-padding-y)
+      var(--bl-button-padding-x);
+    background: var(--bl-button-bg);
+    border: 1px solid var(--bl-button-border);
+    border-radius: var(--bl-button-radius);
+    color: var(--bl-button-color);
+    font-size: var(--bl-button-size);
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  #CollectionSection-{{ section.id }} .black-label-featured__button:hover {
+    color: var(--bl-button-color);
+    opacity: 0.88;
+  }
+
+
+  /* =============================================================
+     VIEW ALL
+     ============================================================= */
+
+  #CollectionSection-{{ section.id }} .black-label-featured__view-all {
+    margin-top: 25px;
+    text-align: center;
+  }
+
+
+  /* =============================================================
+     TABLET
+     ============================================================= */
+
+  @media only screen and (max-width: 959px) {
+    #CollectionSection-{{ section.id }} .black-label-featured__layout {
+      gap: 24px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__content {
+      flex-basis: 42%;
+      width: 42%;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__description {
+      margin-top: 30px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__countdown {
+      gap: 16px;
+    }
+  }
+
+
+  /* =============================================================
+     MOBILE
+     ============================================================= */
+
+  @media only screen and (max-width: 768px) {
+    #CollectionSection-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__page-width {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__layout {
+      display: block;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__content {
+      width: auto;
+      min-height: {{ section.settings.mobile_content_min_height }}px;
+      margin-left: var(--pageWidthPadding, 17px);
+      margin-right: var(--pageWidthPadding, 17px);
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__content-inner {
+      padding:
+        var(--bl-mobile-padding-y)
+        var(--bl-mobile-padding-x);
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__products {
+      width: 100%;
+      margin-top: {{ section.settings.mobile_products_spacing }}px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__title {
+      font-size: var(--bl-heading-mobile-size);
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__description {
+      margin-top: 25px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__countdown {
+      width: 100%;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__countdown-item {
+      min-width: 0;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__countdown-number {
+      font-size: var(--bl-count-number-mobile-size);
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__countdown-label {
+      letter-spacing: 0.1em;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__button-wrapper {
+      margin-top: 28px;
+    }
+
+    #CollectionSection-{{ section.id }} .black-label-featured__view-all {
+      padding-left: var(--pageWidthPadding, 17px);
+      padding-right: var(--pageWidthPadding, 17px);
+    }
+  }
+</style>
+
+
+{%- if section.settings.show_countdown -%}
+  <script>
+    (function() {
+      var section = document.getElementById('CollectionSection-{{ section.id }}');
+
+      if (!section) return;
+
+      var countdown = section.querySelector('[data-black-label-countdown]');
+
+      if (!countdown) return;
+
+      var endDateValue = countdown.getAttribute('data-end-date');
+
+      if (!endDateValue) return;
+
+      var endDate = new Date(endDateValue).getTime();
+
+      if (isNaN(endDate)) {
+        console.warn(
+          'Black Label countdown: invalid date. Use format YYYY-MM-DDTHH:MM:SS'
+        );
+        return;
+      }
+
+      var daysEl = countdown.querySelector('[data-countdown-days]');
+      var hoursEl = countdown.querySelector('[data-countdown-hours]');
+      var minutesEl = countdown.querySelector('[data-countdown-minutes]');
+      var secondsEl = countdown.querySelector('[data-countdown-seconds]');
+
+      function pad(value) {
+        return String(value).padStart(2, '0');
+      }
+
+      function updateCountdown() {
+        var now = new Date().getTime();
+        var distance = endDate - now;
+
+        if (distance <= 0) {
+          if (daysEl) daysEl.textContent = '00';
+          if (hoursEl) hoursEl.textContent = '00';
+          if (minutesEl) minutesEl.textContent = '00';
+          if (secondsEl) secondsEl.textContent = '00';
+
+          if (window['blackLabelCountdown{{ section.id | replace: "-", "" }}']) {
+            clearInterval(
+              window['blackLabelCountdown{{ section.id | replace: "-", "" }}']
+            );
+          }
+
+          return;
+        }
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) /
+          (1000 * 60 * 60)
+        );
+        var minutes = Math.floor(
+          (distance % (1000 * 60 * 60)) /
+          (1000 * 60)
+        );
+        var seconds = Math.floor(
+          (distance % (1000 * 60)) /
+          1000
+        );
+
+        if (daysEl) daysEl.textContent = pad(days);
+        if (hoursEl) hoursEl.textContent = pad(hours);
+        if (minutesEl) minutesEl.textContent = pad(minutes);
+        if (secondsEl) secondsEl.textContent = pad(seconds);
+      }
+
+      updateCountdown();
+
+      window['blackLabelCountdown{{ section.id | replace: "-", "" }}'] =
+        setInterval(updateCountdown, 1000);
+    })();
+  </script>
+{%- endif -%}
+
+
+{% schema %}
+{
+  "name": "Black label collection",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collection"
+    },
+    {
+      "type": "collection",
+      "id": "home_featured_products",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "per_row",
+      "label": "Products per row",
+      "default": 2,
+      "min": 1,
+      "max": 4,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Rows",
+      "default": 1,
+      "min": 1,
+      "max": 3,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_scrollable",
+      "label": "Swipe products on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "view_all",
+      "label": "Show view all button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View all text",
+      "default": "View all"
+    },
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Limited Drop"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_eyebrow_line",
+      "label": "Show line before eyebrow",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Black Label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>200 pieces. Numbered. Never restocked. The most refined expression of the house, releasing before it disappears.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Content background image"
+    },
+
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "countdown_date",
+      "label": "Countdown end date",
+      "default": "2026-12-31T23:59:59",
+      "info": "Format: YYYY-MM-DDTHH:MM:SS. Example: 2026-12-31T23:59:59"
+    },
+    {
+      "type": "text",
+      "id": "days_label",
+      "label": "Days label",
+      "default": "Days"
+    },
+    {
+      "type": "text",
+      "id": "hours_label",
+      "label": "Hours label",
+      "default": "Hours"
+    },
+    {
+      "type": "text",
+      "id": "minutes_label",
+      "label": "Minutes label",
+      "default": "Minutes"
+    },
+    {
+      "type": "text",
+      "id": "seconds_label",
+      "label": "Seconds label",
+      "default": "Seconds"
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop The Drop"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "If blank, the selected collection URL will be used."
+    },
+
+    {
+      "type": "header",
+      "content": "Section colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#050707"
+    },
+    {
+      "type": "color",
+      "id": "content_background",
+      "label": "Content background",
+      "default": "#090d0d"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Image overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "default": 45,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
+    },
+
+    {
+      "type": "header",
+      "content": "Eyebrow style"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "default": 11,
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#d9ad28"
+    },
+
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size - desktop",
+      "default": 52,
+      "min": 24,
+      "max": 90,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_mobile_size",
+      "label": "Heading size - mobile",
+      "default": 38,
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "Description style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Description size",
+      "default": 13,
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description color",
+      "default": "#a4a7a7"
+    },
+
+    {
+      "type": "header",
+      "content": "Countdown style"
+    },
+    {
+      "type": "range",
+      "id": "count_number_size",
+      "label": "Number size - desktop",
+      "default": 38,
+      "min": 20,
+      "max": 70,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "count_number_mobile_size",
+      "label": "Number size - mobile",
+      "default": 28,
+      "min": 18,
+      "max": 50,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "count_number_color",
+      "label": "Number color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "count_label_size",
+      "label": "Label size",
+      "default": 9,
+      "min": 7,
+      "max": 18,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "count_label_color",
+      "label": "Label color",
+      "default": "#777b7b"
+    },
+
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "default": 12,
+      "min": 9,
+      "max": 22,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#d9ad28"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border",
+      "default": "#d9ad28"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button corner radius",
+      "default": 0,
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button vertical padding",
+      "default": 16,
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button horizontal padding",
+      "default": 34,
+      "min": 15,
+      "max": 60,
+      "step": 1,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content area width",
+      "default": 40,
+      "min": 25,
+      "max": 60,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "desktop_gap",
+      "label": "Content / product gap",
+      "default": 35,
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_vertical",
+      "label": "Content vertical padding",
+      "default": 50,
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_horizontal",
+      "label": "Content horizontal padding",
+      "default": 45,
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_min_height",
+      "label": "Content minimum height",
+      "default": 420,
+      "min": 250,
+      "max": 700,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_vertical",
+      "label": "Content vertical padding",
+      "default": 35,
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_horizontal",
+      "label": "Content horizontal padding",
+      "default": 25,
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_products_spacing",
+      "label": "Space before products",
+      "default": 25,
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top padding",
+      "default": 60,
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom padding",
+      "default": 60,
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top padding",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom padding",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "Show section divider",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Black label collection",
+      "category": "Collection"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "footer",
+      "header",
+      "custom.popups"
+    ]
+  }
+}
+{% endschema %}
