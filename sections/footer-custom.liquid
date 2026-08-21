@@ -1,0 +1,1146 @@
+{%- liquid
+  assign current_year = 'now' | date: '%Y'
+-%}
+
+<footer
+  id="CustomFooter-{{ section.id }}"
+  class="custom-footer"
+  data-section-id="{{ section.id }}"
+  style="
+    --footer-bg: {{ section.settings.background_color }};
+    --footer-heading-color: {{ section.settings.heading_color }};
+    --footer-text-color: {{ section.settings.text_color }};
+    --footer-link-color: {{ section.settings.link_color }};
+    --footer-link-hover-color: {{ section.settings.link_hover_color }};
+    --footer-border-color: {{ section.settings.border_color }};
+
+    --footer-heading-size: {{ section.settings.heading_size }}px;
+    --footer-text-size: {{ section.settings.text_size }}px;
+    --footer-link-size: {{ section.settings.link_size }}px;
+
+    --footer-column-gap: {{ section.settings.column_gap }}px;
+    --footer-padding-top: {{ section.settings.padding_top }}px;
+    --footer-padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    --footer-mobile-padding-top: {{ section.settings.mobile_padding_top }}px;
+    --footer-mobile-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+
+    --footer-utility-text-size: {{ section.settings.utility_text_size }}px;
+  "
+>
+
+  {%- comment -%}
+    ============================================================
+    MAIN FOOTER
+    ============================================================
+  {%- endcomment -%}
+
+  <div class="custom-footer__main page-width">
+
+    <div class="custom-footer__grid">
+
+      {%- for block in section.blocks -%}
+
+        {%- case block.type -%}
+
+          {%- when 'content' -%}
+
+            <div
+              class="custom-footer__content-column"
+              {{ block.shopify_attributes }}
+            >
+
+              {%- if block.settings.logo != blank -%}
+                <div
+                  class="custom-footer__logo"
+                  style="--footer-logo-width: {{ block.settings.logo_width }}px;"
+                >
+                  {{
+                    block.settings.logo
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '120, 180, 240, 320, 480, 600',
+                      sizes: '240px',
+                      class: 'custom-footer__logo-image'
+                  }}
+                </div>
+              {%- elsif block.settings.show_shop_name -%}
+                <div class="custom-footer__shop-name">
+                  {{ shop.name }}
+                </div>
+              {%- endif -%}
+
+
+              {%- if block.settings.text != blank -%}
+                <div class="custom-footer__description rte">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+
+
+              {%- if section.settings.show_social_icons -%}
+                <div class="custom-footer__social">
+
+                  {%- if block.settings.social_label != blank -%}
+                    <div class="custom-footer__social-label">
+                      {{ block.settings.social_label }}
+                    </div>
+                  {%- endif -%}
+
+                  <div class="custom-footer__social-icons">
+                    {%- render 'social-icons' -%}
+                  </div>
+
+                </div>
+              {%- endif -%}
+
+            </div>
+
+
+          {%- when 'menu' -%}
+
+            {%- liquid
+              assign menu = block.settings.menu
+
+              if block.settings.heading != blank
+                assign menu_heading = block.settings.heading
+              elsif menu != blank
+                assign menu_heading = menu.title
+              else
+                assign menu_heading = 'Menu'
+              endif
+            -%}
+
+
+            {%- comment -%}
+              ====================================================
+              DESKTOP MENU
+              ====================================================
+            {%- endcomment -%}
+
+            <div
+              class="custom-footer__menu-column custom-footer__menu-column--desktop"
+              {{ block.shopify_attributes }}
+            >
+
+              {%- if menu_heading != blank -%}
+                <h3 class="custom-footer__menu-heading">
+                  {{ menu_heading }}
+                </h3>
+              {%- endif -%}
+
+              {%- if menu != blank and menu.links.size > 0 -%}
+
+                <ul class="custom-footer__menu-list" role="list">
+
+                  {%- for link in menu.links -%}
+
+                    <li class="custom-footer__menu-item">
+
+                      <a
+                        href="{{ link.url }}"
+                        class="custom-footer__menu-link"
+                      >
+                        {{ link.title }}
+                      </a>
+
+                    </li>
+
+                  {%- endfor -%}
+
+                </ul>
+
+              {%- endif -%}
+
+            </div>
+
+
+            {%- comment -%}
+              ====================================================
+              MOBILE ACCORDION
+              Native <details>, so no JS is required
+              ====================================================
+            {%- endcomment -%}
+
+            <details
+              class="custom-footer__accordion"
+              {{ block.shopify_attributes }}
+            >
+
+              <summary class="custom-footer__accordion-summary">
+
+                <span>
+                  {{ menu_heading }}
+                </span>
+
+                <span
+                  class="custom-footer__accordion-icon"
+                  aria-hidden="true"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 7H13"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                    <path
+                      class="custom-footer__accordion-plus"
+                      d="M7 1V13"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                    />
+                  </svg>
+                </span>
+
+              </summary>
+
+
+              {%- if menu != blank and menu.links.size > 0 -%}
+
+                <div class="custom-footer__accordion-content">
+
+                  <ul class="custom-footer__menu-list" role="list">
+
+                    {%- for link in menu.links -%}
+
+                      <li class="custom-footer__menu-item">
+
+                        <a
+                          href="{{ link.url }}"
+                          class="custom-footer__menu-link"
+                        >
+                          {{ link.title }}
+                        </a>
+
+                      </li>
+
+                    {%- endfor -%}
+
+                  </ul>
+
+                </div>
+
+              {%- endif -%}
+
+            </details>
+
+        {%- endcase -%}
+
+      {%- endfor -%}
+
+    </div>
+
+  </div>
+
+
+  {%- comment -%}
+    ============================================================
+    UTILITY BAR
+    ============================================================
+  {%- endcomment -%}
+
+  {%- if section.settings.show_utility_bar -%}
+
+    <div class="custom-footer__utility page-width">
+
+      <div class="custom-footer__utility-inner">
+
+        {%- if section.settings.show_copyright -%}
+
+          <div class="custom-footer__copyright">
+
+            <span>
+              © {{ current_year }}
+            </span>
+
+            {%- if section.settings.copyright_text != blank -%}
+              <span>
+                {{ section.settings.copyright_text }}
+              </span>
+            {%- else -%}
+              <span>
+                {{ shop.name }}. All Rights Reserved.
+              </span>
+            {%- endif -%}
+
+          </div>
+
+        {%- endif -%}
+
+
+        {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+
+          <div
+            class="custom-footer__payments"
+            aria-label="Payment methods"
+          >
+
+            {%- for type in shop.enabled_payment_types -%}
+
+              <span class="custom-footer__payment-item">
+                {{
+                  type
+                  | payment_type_svg_tag:
+                    class: 'custom-footer__payment-icon'
+                }}
+              </span>
+
+            {%- endfor -%}
+
+          </div>
+
+        {%- endif -%}
+
+      </div>
+
+    </div>
+
+  {%- endif -%}
+
+</footer>
+
+
+<style>
+  /* =============================================================
+     FOOTER
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} {
+    width: 100%;
+    background: var(--footer-bg);
+    color: var(--footer-text-color);
+  }
+
+
+  #CustomFooter-{{ section.id }} .custom-footer__main {
+    padding-top: var(--footer-padding-top);
+    padding-bottom: var(--footer-padding-bottom);
+  }
+
+
+  /* =============================================================
+     DESKTOP GRID
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(240px, 1.6fr)
+      repeat({{ section.blocks | where: 'type', 'menu' | size }}, minmax(120px, 1fr));
+
+    gap: var(--footer-column-gap);
+
+    width: 100%;
+    align-items: start;
+  }
+
+
+  /* =============================================================
+     CONTENT COLUMN
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__content-column {
+    min-width: 0;
+    max-width: {{ section.settings.content_max_width }}px;
+  }
+
+
+  /* =============================================================
+     LOGO
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__logo {
+    margin-bottom: 24px;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__logo-image {
+    display: block;
+
+    width: min(
+      var(--footer-logo-width),
+      100%
+    );
+
+    height: auto;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__shop-name {
+    margin-bottom: 24px;
+
+    color: var(--footer-heading-color);
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+
+  /* =============================================================
+     DESCRIPTION
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__description {
+    max-width: 390px;
+
+    color: var(--footer-text-color);
+
+    font-size: var(--footer-text-size);
+    line-height: 1.65;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__description,
+  #CustomFooter-{{ section.id }} .custom-footer__description p,
+  #CustomFooter-{{ section.id }} .custom-footer__description a {
+    color: var(--footer-text-color);
+    font-size: var(--footer-text-size);
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__description p {
+    margin-top: 0;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__description p:last-child {
+    margin-bottom: 0;
+  }
+
+
+  /* =============================================================
+     SOCIAL
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__social {
+    margin-top: 18px;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__social-label {
+    margin-bottom: 10px;
+
+    color: var(--footer-heading-color);
+
+    font-size: var(--footer-text-size);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__social-icons {
+    display: flex;
+    align-items: center;
+  }
+
+  /*
+    We are not replacing the social icon snippet styles.
+    These rules only help normalize spacing if your theme
+    uses a list wrapper.
+  */
+
+  #CustomFooter-{{ section.id }} .custom-footer__social-icons ul {
+    margin: 0;
+  }
+
+
+  /* =============================================================
+     MENU
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__menu-column {
+    min-width: 0;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__menu-heading {
+    margin: 0 0 22px;
+    padding: 0;
+
+    color: var(--footer-heading-color);
+
+    font-size: var(--footer-heading-size);
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__menu-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: {{ section.settings.menu_link_gap }}px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__menu-item {
+    margin: 0;
+    padding: 0;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__menu-link {
+    display: inline-block;
+
+    color: var(--footer-link-color);
+
+    font-size: var(--footer-link-size);
+    line-height: 1.45;
+
+    text-decoration: none;
+
+    transition:
+      color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__menu-link:hover {
+    color: var(--footer-link-hover-color);
+  }
+
+
+  /* =============================================================
+     MOBILE ACCORDION
+     Hidden on desktop
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__accordion {
+    display: none;
+  }
+
+
+  /* =============================================================
+     UTILITY BAR
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__utility {
+    background: var(--footer-bg);
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__utility-inner {
+    min-height: {{ section.settings.utility_min_height }}px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-top: {{ section.settings.utility_padding_vertical }}px;
+    padding-bottom: {{ section.settings.utility_padding_vertical }}px;
+
+    {% if section.settings.show_utility_divider %}
+      border-top: 1px solid var(--footer-border-color);
+    {% endif %}
+  }
+
+
+  /* =============================================================
+     COPYRIGHT
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__copyright {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 4px;
+
+    color: var(--footer-text-color);
+
+    font-size: var(--footer-utility-text-size);
+    line-height: 1.4;
+  }
+
+
+  /* =============================================================
+     PAYMENT ICONS
+     ============================================================= */
+
+  #CustomFooter-{{ section.id }} .custom-footer__payments {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: {{ section.settings.payment_gap }}px;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__payment-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 0;
+  }
+
+  #CustomFooter-{{ section.id }} .custom-footer__payment-icon {
+    display: block;
+
+    width: {{ section.settings.payment_icon_width }}px;
+    height: auto;
+  }
+
+
+  /* =============================================================
+     TABLET
+     ============================================================= */
+
+  @media screen and (max-width: 989px) and (min-width: 769px) {
+
+    #CustomFooter-{{ section.id }} .custom-footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 50px;
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__content-column {
+      max-width: none;
+    }
+
+  }
+
+
+  /* =============================================================
+     MOBILE
+     ============================================================= */
+
+  @media screen and (max-width: 768px) {
+
+    #CustomFooter-{{ section.id }} .custom-footer__main {
+      padding-top: var(--footer-mobile-padding-top);
+      padding-bottom: var(--footer-mobile-padding-bottom);
+    }
+
+
+    /* -------------------------
+       Grid
+       ------------------------- */
+
+    #CustomFooter-{{ section.id }} .custom-footer__grid {
+      display: block;
+    }
+
+
+    /* -------------------------
+       Content
+       ------------------------- */
+
+    #CustomFooter-{{ section.id }} .custom-footer__content-column {
+      max-width: none;
+
+      margin-bottom: {{ section.settings.mobile_content_bottom_spacing }}px;
+    }
+
+
+    /* -------------------------
+       Desktop menu hidden
+       ------------------------- */
+
+    #CustomFooter-{{ section.id }} .custom-footer__menu-column--desktop {
+      display: none;
+    }
+
+
+    /* -------------------------
+       Accordion
+       ------------------------- */
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion {
+      display: block;
+
+      margin: 0;
+      padding: 0;
+
+      border-top: 1px solid var(--footer-border-color);
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion:last-child {
+      border-bottom: 1px solid var(--footer-border-color);
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion-summary {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding:
+        {{ section.settings.mobile_accordion_padding }}px
+        0;
+
+      cursor: pointer;
+
+      color: var(--footer-heading-color);
+
+      font-size: var(--footer-heading-size);
+      line-height: 1.3;
+      font-weight: 600;
+
+      list-style: none;
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion-summary::marker {
+      display: none;
+      content: "";
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion-icon {
+      flex: 0 0 auto;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--footer-heading-color);
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion-plus {
+      transform-origin: center;
+
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    #CustomFooter-{{ section.id }}
+      .custom-footer__accordion[open]
+      .custom-footer__accordion-plus {
+      transform: rotate(90deg);
+      opacity: 0;
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__accordion-content {
+      padding:
+        0
+        0
+        {{ section.settings.mobile_accordion_padding }}px;
+    }
+
+
+    /* -------------------------
+       Utility
+       ------------------------- */
+
+    #CustomFooter-{{ section.id }} .custom-footer__utility-inner {
+      flex-direction: column;
+      align-items: flex-start;
+
+      gap: 18px;
+
+      min-height: 0;
+    }
+
+    #CustomFooter-{{ section.id }} .custom-footer__payments {
+      justify-content: flex-start;
+    }
+
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Custom footer",
+  "class": "custom-footer-section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#070707"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#8b8b8b"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#8b8b8b"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider color",
+      "default": "#242424"
+    },
+
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Menu heading size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Content text size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "Menu link size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content column maximum width",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 360,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "menu_link_gap",
+      "label": "Space between menu links",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 11,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Social media"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons",
+      "default": true,
+      "info": "Uses the existing social-icons.liquid snippet."
+    },
+
+    {
+      "type": "header",
+      "content": "Utility bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_utility_bar",
+      "label": "Show utility bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_utility_divider",
+      "label": "Show top divider",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_copyright",
+      "label": "Show copyright",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "Splurge District. All Rights Reserved.",
+      "info": "The © symbol and current year are added automatically."
+    },
+    {
+      "type": "range",
+      "id": "utility_text_size",
+      "label": "Copyright font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "utility_min_height",
+      "label": "Utility bar minimum height",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "default": 65,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "utility_padding_vertical",
+      "label": "Utility bar vertical padding",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Payment methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true,
+      "info": "Displays payment methods enabled in Shopify."
+    },
+    {
+      "type": "range",
+      "id": "payment_icon_width",
+      "label": "Payment icon width",
+      "min": 28,
+      "max": 70,
+      "step": 2,
+      "default": 42,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "payment_gap",
+      "label": "Payment icon gap",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 7,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "default": 55,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 45,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_bottom_spacing",
+      "label": "Space below content",
+      "min": 15,
+      "max": 80,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_accordion_padding",
+      "label": "Accordion vertical padding",
+      "min": 12,
+      "max": 35,
+      "step": 1,
+      "default": 19,
+      "unit": "px"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_shop_name",
+          "label": "Show shop name when no logo",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo width",
+          "min": 60,
+          "max": 350,
+          "step": 10,
+          "default": 180,
+          "unit": "px"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Premium streetwear from the fashion house floor. Wear your worth.</p>"
+        },
+        {
+          "type": "text",
+          "id": "social_label",
+          "label": "Social label",
+          "default": "Follow Us"
+        }
+      ]
+    },
+
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "info": "Leave blank to use the selected menu title."
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Custom footer",
+      "category": "Footer",
+      "blocks": [
+        {
+          "type": "content"
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Customer Care"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "About"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Legal"
+          }
+        }
+      ]
+    }
+  ],
+
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  }
+}
+{% endschema %}
