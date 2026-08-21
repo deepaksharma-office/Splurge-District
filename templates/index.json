@@ -9,39 +9,144 @@
  */
 {
   "sections": {
-    "slideshow_DqdUqf": {
-      "type": "slideshow",
+    "luxury_hero_slideshow_UMWPJJ": {
+      "type": "luxury-hero-slideshow",
       "blocks": {
-        "image_DPCq6N": {
-          "type": "image",
+        "hero_slide_QCpR7L": {
+          "type": "_hero-slide",
           "settings": {
-            "top_subheading": "",
-            "title": "Street Luxary,\n<strong>Redefined</strong>",
-            "title_size": 80,
-            "subheading": "Luxury isn't purchased-it's earned. Discover premium essentials designed for those who wear their worth.",
-            "link": "",
-            "link_text": "Explore",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-center horizontal-left",
-            "image": "shopify://shop_images/Splurg_banner.png",
-            "parallax_direction": "top",
-            "overlay_opacity": 20
-          }
+            "background_image": "shopify://shop_images/Splurg_banner.png",
+            "mobile_background_image": "shopify://shop_images/Splurg_banner_62659682-1a89-4ea0-abf4-a3e952709c2f.png",
+            "image_position": "center center",
+            "mobile_image_position": "center center",
+            "background_color": "#050505",
+            "show_overlay": true,
+            "overlay_color": "#000000",
+            "overlay_opacity": 25,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_left": 0,
+            "padding_right": 0,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "flex-end",
+            "mobile_text_alignment": "left",
+            "mobile_padding_top": 32,
+            "mobile_padding_bottom": 40,
+            "mobile_padding_left": 0,
+            "mobile_padding_right": 0
+          },
+          "blocks": {
+            "hero_title_dVX3Uz": {
+              "type": "_hero-title",
+              "settings": {
+                "text": "Street Luxury,",
+                "heading_tag": "h1",
+                "text_color": "#ffffff",
+                "accent_color": "#d7a52b",
+                "font_size": 68,
+                "font_size_mobile": 46,
+                "font_weight": "700",
+                "line_height": 100,
+                "max_width": 680,
+                "margin_top": 0,
+                "margin_bottom": 0
+              },
+              "blocks": {}
+            },
+            "hero_title_4E9RWT": {
+              "type": "_hero-title",
+              "settings": {
+                "text": "Redefined",
+                "heading_tag": "h1",
+                "text_color": "#d7a52b",
+                "accent_color": "#d7a52b",
+                "font_size": 68,
+                "font_size_mobile": 46,
+                "font_weight": "700",
+                "line_height": 100,
+                "max_width": 680,
+                "margin_top": 0,
+                "margin_bottom": 0
+              },
+              "blocks": {}
+            },
+            "hero_content_z3yBUr": {
+              "type": "_hero-content",
+              "settings": {
+                "text": "<p>Luxury isn't purchased—it’s earned. Discover premium essentials designed for those who wear their worth.</p>",
+                "text_color": "#ffffff",
+                "font_size": 18,
+                "font_size_mobile": 16,
+                "line_height": 145,
+                "max_width": 560,
+                "margin_top": 22,
+                "margin_bottom": 24
+              },
+              "blocks": {}
+            },
+            "hero_buttons_JeptGU": {
+              "type": "_hero-buttons",
+              "settings": {
+                "button_1_label": "Shop Black Label",
+                "button_1_link": "",
+                "button_1_style": "filled",
+                "button_1_arrow": true,
+                "button_1_background": "#d7a52b",
+                "button_1_text_color": "#111111",
+                "button_1_border_color": "#d7a52b",
+                "button_2_label": "Explore The Collection",
+                "button_2_link": "",
+                "button_2_style": "text",
+                "button_2_arrow": true,
+                "button_2_background": "#000000",
+                "button_2_text_color": "#d7a52b",
+                "button_2_border_color": "#d7a52b",
+                "gap": 24,
+                "stack_on_mobile": false,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "font_size": 14,
+                "font_size_mobile": 13,
+                "padding_vertical": 16,
+                "padding_horizontal": 30,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "hero_title_dVX3Uz",
+            "hero_title_4E9RWT",
+            "hero_content_z3yBUr",
+            "hero_buttons_JeptGU"
+          ]
         }
       },
       "block_order": [
-        "image_DPCq6N"
+        "hero_slide_QCpR7L"
       ],
-      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
+      "name": "Luxury hero slideshow",
       "settings": {
-        "section_height": "650px",
-        "mobile_height": "auto",
-        "parallax": false,
-        "style": "bars",
+        "desktop_height": 680,
+        "mobile_height": 650,
+        "background_color": "#050505",
+        "accessibility_label": "Hero slideshow",
+        "slider_type": "loop",
+        "perPageDesktop": 1,
+        "perPageMobile": "1",
+        "perMove": 1,
+        "gap": 0,
+        "gap_mobile": 0,
         "autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "transition_speed": 800,
+        "show_arrows": false,
+        "show_pagination": false,
+        "pause_on_hover": true,
+        "pause_on_focus": true
       }
     },
     "featured-collections": {
@@ -393,7 +498,7 @@
     }
   },
   "order": [
-    "slideshow_DqdUqf",
+    "luxury_hero_slideshow_UMWPJJ",
     "featured-collections",
     "featured_collection_UJa8DV",
     "timer_REEXBq",
