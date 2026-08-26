@@ -1,0 +1,36 @@
+<style>
+  .featured-label {
+    --featured-label-color: {{ color | default: '#D4AF37' }};
+
+    width: max-content;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .featured-label__line {
+    width: 40px;
+    height: 1px;
+    flex: 0 0 40px;
+    background-color: var(--featured-label-color);
+  }
+
+  .featured-label__text {
+    margin: 0;
+    color: var(--featured-label-color);
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: capitalize;
+  }
+</style>
+
+<div class="featured-label">
+  <div class="featured-label__line"></div>
+  <span class="featured-label__text">
+    {{ label }}
+  </span>
+</div>
