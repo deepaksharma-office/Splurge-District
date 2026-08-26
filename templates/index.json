@@ -376,7 +376,7 @@
         "pb": 0,
         "title": "The Collections",
         "heading_size": "h2",
-        "text": "<p>Twenty-four chapters, each a self-contained world. A living archive of the house's evolution, season by season.</p>",
+        "text": "<p>Twenty-four chapters, each a self-contained world. A living archive of the</p><p>house's evolution, season by season.</p>",
         "divider": false,
         "per_row": 4
       }
