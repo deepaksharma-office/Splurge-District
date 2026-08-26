@@ -29,7 +29,6 @@
 {% endstyle %}
 
 <div class="index-section">
-
   <div class="page-width feature-row-wrapper feature-row--{{ image_width }}">
     {%- capture image_layout -%}
       <div class="feature-row__item feature-row__images{% if overlap_images %} feature-row__item--overlap-images{% endif %} {% if placeholder_images %}feature-row__item--placeholder-images{% endif %}" data-aos>
@@ -105,19 +104,36 @@
         {{ image_layout }}
       {%- endif -%}
 
-      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}" data-aos>
+      <div
+        class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-{{ section.settings.align_text }}"
+        data-aos
+      >
+        {% if section.settings.label != blank %}
+          {% render 'featured',
+            label: section.settings.label,
+            color: section.settings.color,
+            pb: section.settings.pb,
+            pt: section.settings.pt
+          %}
+        {% endif %}
+
         {%- if section.settings.subtitle != blank -%}
           <div class="subheading appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.subtitle }}</div>
         {%- endif -%}
         {%- if section.settings.title != blank -%}
-          <h2 class="{{ section.settings.heading_size }} appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.title | escape }}</h2>
+          <h2 class="{{ section.settings.heading_size }} appear-delay{% cycle '','-1','-2','-3','-4' %}">
+            {{ section.settings.title | escape }}
+          </h2>
         {%- endif -%}
         {%- if section.settings.text != blank -%}
           <div class="rte appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.text }}</div>
         {%- endif -%}
         {%- if section.settings.button_label != blank -%}
           <div class="appear-delay{% cycle '','-1','-2','-3','-4' %}">
-            <a href="{{ section.settings.button_link }}" class="btn{% if section.settings.button_style == 'secondary' %} btn--tertiary{% endif %}">
+            <a
+              href="{{ section.settings.button_link }}"
+              class="btn{% if section.settings.button_style == 'secondary' %} btn--tertiary{% endif %}"
+            >
               {{ section.settings.button_label }}
             </a>
           </div>
@@ -129,7 +145,6 @@
       {%- endif -%}
     </div>
   </div>
-
 </div>
 
 {%- if section.settings.divider -%}</div>{%- endif -%}
@@ -138,6 +153,36 @@
 {
   "name": "t:sections.text-and-image.name",
   "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Featured Label",
+      "default": "The Philosophy"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Featured color",
+      "default": "#D4AF37"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Padding Top",
+      "default": 0,
+      "min": 0,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Padding Bottom",
+      "default": 12,
+      "min": 0,
+      "max": 20,
+      "step": 1
+    },
     {
       "type": "header",
       "content": "t:sections.text-and-image.settings.image.label"
