@@ -13,6 +13,9 @@
     <div class="section-header">
       <h2 class="section-header__title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
     </div>
+    {%- if section.settings.text != blank -%}
+      <div class="rte appear-delay{% cycle '','-1','-2','-3','-4' %}">{{ section.settings.text }}</div>
+    {%- endif -%}
   {%- endif -%}
 
   <div class="grid grid--uniform{% unless settings.collection_grid_gutter %} grid--no-gutters{% endunless %}">
@@ -126,6 +129,12 @@
           "label": "t:common.heading_size.options.large.label"
         }
       ]
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.text-and-image.settings.text.label",
+      "default": "<p>Twenty-four chapters, each a self-contained world. A living archive of the house's evolution, season by season.</p>"
     },
     {
       "type": "checkbox",
