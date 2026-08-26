@@ -213,7 +213,7 @@
       "settings": {
         "label": "Featured",
         "color": "#d4af37",
-        "pt": 0,
+        "pt": 20,
         "pb": 20,
         "title": "The Collections",
         "heading_size": "h2",
