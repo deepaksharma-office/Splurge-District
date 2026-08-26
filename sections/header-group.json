@@ -35,6 +35,29 @@
     "header": {
       "type": "header",
       "blocks": {
+        "mega_menu_NadBKe": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Shop",
+            "show_images": true,
+            "image_aspect_ratio": "landscape",
+            "center_content": false,
+            "promo_text_alignment": "left",
+            "promo_heading_size": "medium",
+            "promo1_image_shape": "landscape",
+            "promo1_link": "",
+            "promo1_heading": "",
+            "promo1_text": "",
+            "promo1_button_label": "",
+            "promo1_position": "after",
+            "promo2_image_shape": "landscape",
+            "promo2_link": "",
+            "promo2_heading": "",
+            "promo2_text": "",
+            "promo2_button_label": "",
+            "promo2_position": "after"
+          }
+        },
         "mega-menu-1": {
           "type": "mega_menu",
           "name": "New",
@@ -85,6 +108,7 @@
         }
       },
       "block_order": [
+        "mega_menu_NadBKe",
         "mega-menu-1",
         "mega-menu-2"
       ],
