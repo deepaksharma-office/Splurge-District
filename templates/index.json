@@ -146,7 +146,9 @@
       ],
       "name": "Luxury hero slideshow",
       "settings": {
+        "desktop_height_mode": "image",
         "desktop_height": 680,
+        "mobile_height_mode": "image",
         "mobile_height": 650,
         "background_color": "#050505",
         "accessibility_label": "Hero slideshow",
@@ -209,6 +211,10 @@
       ],
       "name": "t:sections.featured-collections.presets.collection_list.name",
       "settings": {
+        "label": "Featured",
+        "color": "#d4af37",
+        "pt": 0,
+        "pb": 20,
         "title": "The Collections",
         "heading_size": "h2",
         "divider": false,
@@ -355,6 +361,10 @@
       ],
       "name": "t:sections.featured-collections.presets.collection_list.name",
       "settings": {
+        "label": "Featured",
+        "color": "#d4af37",
+        "pt": 0,
+        "pb": 0,
         "title": "The Collections",
         "heading_size": "h2",
         "divider": false,
