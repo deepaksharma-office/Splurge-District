@@ -8,9 +8,8 @@
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    padding-top: {{ pt }}px;
-    padding-bottom: {{ pb }}px;
-    position: relative;
+    padding-top: var(--pt);
+    padding-bottom: var(--pb);
   }
 
   .featured-label__line {
@@ -35,7 +34,10 @@
 {{ color }}
 {{ label }}
 
-<div class="featured-label">
+<div class="featured-label" style="
+    --pt: {{ pt }}px;
+    --pb: {{ pb }}px;
+    ">
   <div class="featured-label__line"></div>
   <span class="featured-label__text">
     {{ label }}
