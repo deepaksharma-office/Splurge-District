@@ -4,9 +4,15 @@
 
 <section
   id="{{ hero_id }}"
-  class="luxury-hero"
+  class="
+    luxury-hero
+    luxury-hero--desktop-{{ section.settings.desktop_height_mode }}
+    luxury-hero--mobile-{{ section.settings.mobile_height_mode }}
+  "
   data-section-id="{{ section.id }}"
   data-section-type="luxury-hero-slideshow"
+  data-desktop-height-mode="{{ section.settings.desktop_height_mode }}"
+  data-mobile-height-mode="{{ section.settings.mobile_height_mode }}"
   style="
     --hero-height-desktop: {{ section.settings.desktop_height }}px;
     --hero-height-mobile: {{ section.settings.mobile_height }}px;
@@ -33,19 +39,15 @@
 %}
 
 <style>
+  /* ======================================================
+     HERO BASE
+  ====================================================== */
+
   #{{ hero_id }} {
     width: 100%;
-    height: var(--hero-height-desktop);
     min-height: 1px;
     overflow: hidden;
     background: var(--hero-section-bg);
-  }
-
-  #{{ hero_id }} .luxury-hero__splide,
-  #{{ hero_id }} .splide__track,
-  #{{ hero_id }} .splide__list,
-  #{{ hero_id }} .splide__slide {
-    height: 100%;
   }
 
   #{{ hero_id }} .splide__track {
@@ -60,9 +62,88 @@
     min-height: 0;
   }
 
+
+  /* ======================================================
+     DESKTOP - CUSTOM HEIGHT
+  ====================================================== */
+
+  #{{ hero_id }}.luxury-hero--desktop-custom {
+    height: var(--hero-height-desktop);
+  }
+
+  #{{ hero_id }}.luxury-hero--desktop-custom .luxury-hero__splide,
+  #{{ hero_id }}.luxury-hero--desktop-custom .splide__track,
+  #{{ hero_id }}.luxury-hero--desktop-custom .splide__list,
+  #{{ hero_id }}.luxury-hero--desktop-custom .splide__slide {
+    height: 100%;
+  }
+
+
+  /* ======================================================
+     DESKTOP - IMAGE / NATURAL HEIGHT
+  ====================================================== */
+
+  #{{ hero_id }}.luxury-hero--desktop-image {
+    height: auto;
+  }
+
+  #{{ hero_id }}.luxury-hero--desktop-image .luxury-hero__splide,
+  #{{ hero_id }}.luxury-hero--desktop-image .splide__track,
+  #{{ hero_id }}.luxury-hero--desktop-image .splide__list,
+  #{{ hero_id }}.luxury-hero--desktop-image .splide__slide {
+    height: auto;
+  }
+
+  /*
+    Important:
+    In image-height mode the image should participate
+    in normal document flow so its natural aspect ratio
+    can determine the slide height.
+  */
+  #{{ hero_id }}.luxury-hero--desktop-image .splide__slide img {
+    height: auto;
+  }
+
+
+  /* ======================================================
+     MOBILE
+  ====================================================== */
+
   @media screen and (max-width: 768px) {
-    #{{ hero_id }} {
+
+    /* ------------------------------
+       MOBILE CUSTOM HEIGHT
+    ------------------------------ */
+
+    #{{ hero_id }}.luxury-hero--mobile-custom {
       height: var(--hero-height-mobile);
+    }
+
+    #{{ hero_id }}.luxury-hero--mobile-custom .luxury-hero__splide,
+    #{{ hero_id }}.luxury-hero--mobile-custom .splide__track,
+    #{{ hero_id }}.luxury-hero--mobile-custom .splide__list,
+    #{{ hero_id }}.luxury-hero--mobile-custom .splide__slide {
+      height: 100%;
+    }
+
+
+    /* ------------------------------
+       MOBILE IMAGE / NATURAL HEIGHT
+    ------------------------------ */
+
+    #{{ hero_id }}.luxury-hero--mobile-image {
+      height: auto;
+    }
+
+    #{{ hero_id }}.luxury-hero--mobile-image .luxury-hero__splide,
+    #{{ hero_id }}.luxury-hero--mobile-image .splide__track,
+    #{{ hero_id }}.luxury-hero--mobile-image .splide__list,
+    #{{ hero_id }}.luxury-hero--mobile-image .splide__slide {
+      height: auto;
+    }
+
+    #{{ hero_id }}.luxury-hero--mobile-image .splide__slide img {
+      height: auto;
     }
   }
 </style>
@@ -82,28 +163,68 @@
   "settings": [
     {
       "type": "header",
-      "content": "Hero size"
+      "content": "Desktop hero size"
+    },
+    {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop height",
+      "options": [
+        {
+          "value": "image",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "custom",
+          "label": "Custom height"
+        }
+      ],
+      "default": "custom"
     },
     {
       "type": "range",
       "id": "desktop_height",
-      "label": "Desktop height",
+      "label": "Desktop custom height",
       "min": 400,
       "max": 1000,
       "step": 10,
       "default": 680,
-      "unit": "px"
+      "unit": "px",
+      "visible_if": "{{ section.settings.desktop_height_mode == 'custom' }}"
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile hero size"
+    },
+    {
+      "type": "select",
+      "id": "mobile_height_mode",
+      "label": "Mobile height",
+      "options": [
+        {
+          "value": "image",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "custom",
+          "label": "Custom height"
+        }
+      ],
+      "default": "custom"
     },
     {
       "type": "range",
       "id": "mobile_height",
-      "label": "Mobile height",
+      "label": "Mobile custom height",
       "min": 420,
       "max": 900,
       "step": 10,
       "default": 650,
-      "unit": "px"
+      "unit": "px",
+      "visible_if": "{{ section.settings.mobile_height_mode == 'custom' }}"
     },
+
     {
       "type": "color",
       "id": "background_color",
