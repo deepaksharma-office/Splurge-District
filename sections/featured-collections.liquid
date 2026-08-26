@@ -2,6 +2,9 @@
 
 <div class="page-width">
   {%- if section.settings.title != blank -%}
+    {% if section.settings.label !=blank %}
+      {% render 'featured', label: section.settings.label, color: section.settings.color %}
+    {% endif %}
     <div class="section-header">
       <h2 class="section-header__title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
     </div>
@@ -64,6 +67,18 @@
   "class": "index-section",
   "max_blocks": 15,
   "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Featured Label",
+      "default": "Featured"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Featured color",
+      "default": "#D4AF37"
+    },
     {
       "type": "text",
       "id": "title",
