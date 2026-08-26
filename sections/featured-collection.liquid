@@ -12,16 +12,30 @@
   id="CollectionSection-{{ section.id }}"
   data-section-id="{{ section.id }}"
   data-section-type="collection-grid"
-  data-context="featured-collection">
+  data-context="featured-collection"
+>
   {%- if section.settings.title != blank or section.settings.view_all -%}
     <div class="page-width">
+      {% if section.settings.label != blank %}
+        {% render 'featured',
+          label: section.settings.label,
+          color: section.settings.color,
+          pb: section.settings.pb,
+          pt: section.settings.pt
+        %}
+      {% endif %}
       <div class="section-header{% if section.settings.view_all %}{% unless settings.type_headers_align_text == 'center' %} section-header--with-link{% endunless %}{% endif %}">
         <h2 class="section-header__title {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.view_all -%}
           {%- if section.settings.rows == 1 or section.settings.mobile_scrollable -%}
-            <a href="{{ collections[section.settings.home_featured_products].url }}" class="btn btn--secondary btn--small section-header__link{% if section.settings.mobile_scrollable and section.settings.rows > 1 %} medium-up--hide{% endif %}">{{ 'collections.general.all_of_collection' | t }}</a>
+            <a
+              href="{{ collections[section.settings.home_featured_products].url }}"
+              class="btn btn--secondary btn--small section-header__link{% if section.settings.mobile_scrollable and section.settings.rows > 1 %} medium-up--hide{% endif %}"
+            >
+              {{- 'collections.general.all_of_collection' | t -}}
+            </a>
           {%- endif -%}
         {%- endif -%}
       </div>
@@ -29,8 +43,17 @@
   {%- endif -%}
 
   <div class="page-width{% if mobile_scrollable %} page-width--flush-small{% endif %}">
-    <div{% if mobile_scrollable %} class="grid-overflow-wrapper{% if product_limit == 1 %} grid-overflow-wrapper--single{% endif %}"{% endif %}>
-      <div class="grid grid--uniform"{% if mobile_scrollable %} data-aos="overflow__animation"{% endif %}>
+    <div
+      {% if mobile_scrollable %}
+        class="grid-overflow-wrapper{% if product_limit == 1 %} grid-overflow-wrapper--single{% endif %}"
+      {% endif %}
+    >
+      <div
+        class="grid grid--uniform"
+        {% if mobile_scrollable %}
+          data-aos="overflow__animation"
+        {% endif %}
+      >
         {%- liquid
           capture gridView
             render 'products_per_row', products_per_row: per_row, style: 'fractions'
@@ -43,8 +66,10 @@
           endif
         -%}
 
-        {%- if section.settings.home_featured_products == blank or collections[section.settings.home_featured_products].empty? or collections[section.settings.home_featured_products].products_count == 0 -%}
-
+        {%- if section.settings.home_featured_products == blank
+          or collections[section.settings.home_featured_products].empty?
+          or collections[section.settings.home_featured_products].products_count == 0
+        -%}
           {%- unless emptyState -%}
             {%- assign emptyState = true -%}
           {%- endunless -%}
@@ -57,7 +82,9 @@
                     <a href="{{ product.url | within: collection }}" class="grid-product__link">
                       <div class="grid-product__image-mask">
                         {%- capture current -%}{% cycle 1, 2, 3, 4, 5, 6 %}{%- endcapture -%}
-                        <div class="image-wrap">{{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}</div>
+                        <div class="image-wrap">
+                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
                       </div>
                       <div class="grid-product__meta">
                         <div class="grid-product__title">{{ 'home_page.onboarding.product_title' | t }}</div>
@@ -71,27 +98,25 @@
           </div>
 
         {%- else -%}
-
           {%- for product in collections[section.settings.home_featured_products].products limit: product_limit -%}
             {%- render 'product-grid-item',
               product: product,
               collection: collection,
               per_row: per_row,
               quick_shop_enable: settings.quick_shop_enable,
-              fallback: fallback,
+              fallback: fallback
             -%}
           {%- endfor -%}
 
           {%- if section.settings.view_all -%}
-
             {%- if section.settings.rows > 1 -%}
               <div class="grid__item text-center{% if mobile_scrollable %} small--hide{% endif %}">
-                <a href="{{ collections[section.settings.home_featured_products].url }}" class="btn">{{ 'collections.general.all_of_collection' | t }}</a>
+                <a href="{{ collections[section.settings.home_featured_products].url }}" class="btn">
+                  {{- 'collections.general.all_of_collection' | t -}}
+                </a>
               </div>
             {%- endif -%}
-
           {%- endif -%}
-
         {%- endif -%}
       </div>
     </div>
@@ -105,6 +130,36 @@
   "name": "t:sections.featured-collection.name",
   "class": "index-section",
   "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Featured Label",
+      "default": "Just Landed"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Featured color",
+      "default": "#D4AF37"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Padding Top",
+      "default": 0,
+      "min": 0,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Padding Bottom",
+      "default": 12,
+      "min": 0,
+      "max": 20,
+      "step": 1
+    },
     {
       "type": "text",
       "id": "title",
