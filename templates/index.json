@@ -225,6 +225,10 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.featured_collection.name",
       "settings": {
+        "label": "Just Landed",
+        "color": "#d4af37",
+        "pt": 0,
+        "pb": 12,
         "title": "New Arrivals",
         "heading_size": "h2",
         "home_featured_products": "drinkware-copy",
@@ -299,6 +303,10 @@
       "type": "text-and-image",
       "name": "t:sections.text-and-image.presets.image_with_text.name",
       "settings": {
+        "label": "The Philosophy",
+        "color": "#d4af37",
+        "pt": 0,
+        "pb": 12,
         "image": "shopify://shop_images/74c6dfd9f31aad54544201bc57d9df792a8fb32e.jpg",
         "image_mask": "none",
         "image2_mask": "none",
@@ -361,7 +369,7 @@
       ],
       "name": "t:sections.featured-collections.presets.collection_list.name",
       "settings": {
-        "label": "Featured",
+        "label": "Chapter Series I — XXIV",
         "color": "#d4af37",
         "pt": 0,
         "pb": 0,
