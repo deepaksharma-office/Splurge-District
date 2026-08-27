@@ -68,6 +68,16 @@
             "icon": "ribbon",
             "text": "Something something"
           }
+        },
+        "complementary_products_Y63epW": {
+          "type": "complementary_products",
+          "settings": {
+            "product_complementary_heading": "Pairs well with",
+            "complementary_count": 4,
+            "per_slide": 2,
+            "control_type": "dots",
+            "image_style": "default"
+          }
         }
       },
       "block_order": [
@@ -78,7 +88,8 @@
         "tab-1",
         "tab-4",
         "sales_point-1",
-        "sales_point-2"
+        "sales_point-2",
+        "complementary_products_Y63epW"
       ],
       "settings": {
         "sku_enable": false,
