@@ -50,6 +50,14 @@
         "tab-4": {
           "type": "tab",
           "settings": {
+            "title": "Fabric and care information",
+            "content": "{{ product.metafields.custom.fabric_and_care_information | metafield_tag }}",
+            "page": ""
+          }
+        },
+        "tab_KhipdY": {
+          "type": "tab",
+          "settings": {
             "title": "Shipping & Returns",
             "content": "<p><strong>Standard E-Commerce Product Page</strong></p><ul><li><strong>Processing:</strong> Ships within 1–2 business days.</li><li><strong>Standard Delivery:</strong> 3–5 business days ($4.99 or free on orders over $50).</li><li><strong>Express Delivery:</strong> 1–2 business days ($12.99).</li><li><strong>Tracking:</strong> A confirmation email with tracking details will be sent once dispatched.</li></ul><p><strong>Short / Compact (Product Accordion / Drawer)</strong></p><p><strong>Shipping:</strong> Free standard shipping on orders over $50. Orders are processed within 24–48 hours and typically arrive in 3–5 business days. Express checkout available.</p><p><strong>Fast Fashion / Boutique Style</strong></p><ul><li><strong>Standard US:</strong> 3–5 business days ($5.00)</li><li><strong>Express US:</strong> 2 business days ($15.00)</li><li><strong>International:</strong> 7–14 business days (Calculated at checkout)</li><li><em>Note: Orders placed after 2 PM EST ship the next business day.</em></li></ul>",
             "page": ""
@@ -87,6 +95,7 @@
         "buy_buttons",
         "tab-1",
         "tab-4",
+        "tab_KhipdY",
         "sales_point-1",
         "sales_point-2",
         "complementary_products_Y63epW"
