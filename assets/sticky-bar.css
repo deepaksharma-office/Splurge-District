@@ -1,0 +1,157 @@
+/* ==========================================
+   Sticky Add To Cart
+========================================== */
+
+.inner_sticky .product-form__submit {
+  margin: 0;
+}
+
+.mobile--cart{
+    width: 20px;
+    height: auto;
+}
+
+.add-to-cart-footer__custom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+
+  transform: translateY(100%);
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  /* Glass Effect */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 -8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.add-to-cart-footer__custom.is--active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.custom__button{
+    all: unset;
+}
+
+/* ==========================================
+   Layout
+========================================== */
+
+.inner_sticky {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "image title button"
+    "image price button";
+
+  align-items: end;
+  gap: 0.5rem 1.5rem;
+  padding: 1.2rem 0;
+}
+
+/* ==========================================
+   Grid Areas
+========================================== */
+
+.inner_image {
+  grid-area: image;
+}
+
+.inner_title {
+  grid-area: title;
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: black;
+}
+
+.inner_price {
+  grid-area: price;
+  line-height: 1.2;
+}
+
+.inner_button {
+  grid-area: button;
+  min-width: 40rem;
+}
+
+.custom__button {
+    all: unset;
+    padding: 1rem 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+}
+
+/* ==========================================
+   Image
+========================================== */
+
+.inner_image img {
+display: block;
+    width: 60px;
+    height: 90px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media screen and (max-width: 749px) {
+  .inner_sticky {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas:
+      "image title"
+      "image price"
+      "button button";
+
+    gap: 0.75rem 1rem;
+  }
+
+  .custom__button {
+    line-height: 0;
+    width: max-content;
+  }
+
+  .inner_button {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .inner_button .product-form {
+    width: 100%;
+  }
+
+  .inner_button .product-form__submit {
+    width: 100%;
+  }
+
+  .inner_title {
+    font-size: 1.6rem;
+  }
+
+  .inner_sticky .product-form__buttons{
+    max-width: 100%;
+  }
+}
