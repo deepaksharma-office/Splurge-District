@@ -1,11 +1,11 @@
 :root {
-  --cart-maroon: #6b1f2a;
-  --cart-gold: #e8a53a;
+  --cart-maroon: #000;
+  --cart-gold: #000;
   --cart-cream: #f7f1e3;
-  --cart-ink: #2a1f1a;
-  --cart-terracotta: #c56b3e;
+  --cart-ink: #000;
+  --cart-terracotta: #000;
   --cart-white: #fcfaf5;
-  --cart-brass: #c9a24c;
+  --cart-brass: #000;
 }
 
 #cart-drawer .theme-drawer__dialog {
