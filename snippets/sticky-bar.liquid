@@ -16,13 +16,14 @@
     {{ product.price | money }}
   </div>
   <div class="inner_button">
-    {%- render 'sticky',
-      product: product,
-      product_form_id: product_form_id,
-      section_id: section.id,
-      show_pickup_availability: false,
-      show_dynamic_checkout: false,
-      show_gift_card_recipient: false
-    -%}
+    <div class="product-block">
+      {%- render 'product-form',
+        form_id: form_id,
+        product: product,
+        show_dynamic_checkout: block.settings.show_dynamic_checkout,
+        current_variant: current_variant,
+        block: block
+      -%}
+    </div>
   </div>
 </div>
