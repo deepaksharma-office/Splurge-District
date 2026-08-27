@@ -31,6 +31,10 @@
             "color_swatches": true
           }
         },
+        "wishlist_by_square_wishlist_button_BTaFgM": {
+          "type": "shopify://apps/wishlist-by-square/blocks/wishlist-button/88ec2beb-ce43-48ed-b791-0a6554082c2b",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -92,6 +96,7 @@
         "price",
         "size_chart",
         "variant_picker",
+        "wishlist_by_square_wishlist_button_BTaFgM",
         "buy_buttons",
         "tab-1",
         "tab-4",
