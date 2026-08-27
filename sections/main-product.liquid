@@ -4,6 +4,7 @@
     assign isModal = true
   endif
 -%}
+  {{ 'sticky-bar.css' | asset_url | stylesheet_tag }}
 
 {%- render 'product-template',
   product: product,
