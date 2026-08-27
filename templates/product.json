@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,12 +15,6 @@
         "price": {
           "type": "price",
           "settings": {}
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-            "is_tab": false
-          }
         },
         "size_chart": {
           "type": "size_chart",
@@ -40,23 +43,7 @@
           "type": "tab",
           "settings": {
             "title": "Description",
-            "content": "<p>[connect via dynamic source]</p>",
-            "page": ""
-          }
-        },
-        "tab-2": {
-          "type": "tab",
-          "settings": {
-            "title": "Materials & Care",
-            "content": "<p>[connect via dynamic source]</p>",
-            "page": ""
-          }
-        },
-        "tab-3": {
-          "type": "tab",
-          "settings": {
-            "title": "Certifications",
-            "content": "<p>[connect certification badges/images via dynamic source]</p>",
+            "content": "{{ product.description }}",
             "page": ""
           }
         },
@@ -85,13 +72,10 @@
       },
       "block_order": [
         "price",
-        "description",
         "size_chart",
         "variant_picker",
         "buy_buttons",
         "tab-1",
-        "tab-2",
-        "tab-3",
         "tab-4",
         "sales_point-1",
         "sales_point-2"
@@ -177,7 +161,13 @@
           }
         }
       },
-      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3", "testimonial-4", "testimonial-5"],
+      "block_order": [
+        "testimonial-1",
+        "testimonial-2",
+        "testimonial-3",
+        "testimonial-4",
+        "testimonial-5"
+      ],
       "settings": {
         "title": "Hear it from them",
         "heading_size": "h2",
@@ -185,38 +175,6 @@
         "round_images": true,
         "color_background": "#e6ebef",
         "color_text": "#2a3743"
-      }
-    },
-    "slideshow": {
-      "type": "slideshow",
-      "blocks": {
-        "image-1": {
-          "type": "image",
-          "settings": {
-            "top_subheading": "something something",
-            "title": "Sustainability",
-            "title_size": 80,
-            "subheading": "Quality materials, thoughtful details, and products made to keep up.",
-            "link": "",
-            "link_text": "Leads to sustainability page",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-center horizontal-center",
-            "parallax_direction": "top",
-            "overlay_opacity": 20
-          }
-        }
-      },
-      "block_order": ["image-1"],
-      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
-      "settings": {
-        "section_height": "650px",
-        "mobile_height": "auto",
-        "parallax": true,
-        "style": "bars",
-        "autoplay": true,
-        "autoplay_speed": 5
       }
     },
     "sub": {
@@ -241,7 +199,6 @@
     "recently-viewed",
     "collection-return",
     "testimonials",
-    "slideshow",
     "sub",
     "apps"
   ]
