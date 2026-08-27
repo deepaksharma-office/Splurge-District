@@ -51,7 +51,7 @@
           "type": "tab",
           "settings": {
             "title": "Shipping & Returns",
-            "content": "<p>something something</p>",
+            "content": "<p><strong>Standard E-Commerce Product Page</strong></p><ul><li><strong>Processing:</strong> Ships within 1–2 business days.</li><li><strong>Standard Delivery:</strong> 3–5 business days ($4.99 or free on orders over $50).</li><li><strong>Express Delivery:</strong> 1–2 business days ($12.99).</li><li><strong>Tracking:</strong> A confirmation email with tracking details will be sent once dispatched.</li></ul><p><strong>Short / Compact (Product Accordion / Drawer)</strong></p><p><strong>Shipping:</strong> Free standard shipping on orders over $50. Orders are processed within 24–48 hours and typically arrive in 3–5 business days. Express checkout available.</p><p><strong>Fast Fashion / Boutique Style</strong></p><ul><li><strong>Standard US:</strong> 3–5 business days ($5.00)</li><li><strong>Express US:</strong> 2 business days ($15.00)</li><li><strong>International:</strong> 7–14 business days (Calculated at checkout)</li><li><em>Note: Orders placed after 2 PM EST ship the next business day.</em></li></ul>",
             "page": ""
           }
         },
