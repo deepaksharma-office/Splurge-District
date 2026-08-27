@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "collection-header": {
@@ -7,31 +16,6 @@
         "collection_image_enable": true,
         "parallax": true,
         "parallax_direction": "top"
-      }
-    },
-    "promo-grid": {
-      "type": "promo-grid",
-      "blocks": {
-        "banner": {
-          "type": "banner",
-          "settings": {
-            "heading": "Save on Select Styles",
-            "heading_size": "h3",
-            "text": "Take an extra 10% off sale items — limited time",
-            "link": "",
-            "label": "Shop now",
-            "color_tint": "#2a3743",
-            "color_tint_opacity": 10,
-            "framed": false
-          }
-        }
-      },
-      "block_order": ["banner"],
-      "settings": {
-        "full_width": false,
-        "gutter_size": 20,
-        "space_above": true,
-        "space_below": false
       }
     },
     "main-collection": {
@@ -57,7 +41,11 @@
           }
         }
       },
-      "block_order": ["collection_description", "subcollections", "product_grid"],
+      "block_order": [
+        "collection_description",
+        "subcollections",
+        "product_grid"
+      ],
       "settings": {
         "enable_sidebar": true,
         "collapsed": true,
@@ -68,5 +56,8 @@
       }
     }
   },
-  "order": ["collection-header", "promo-grid", "main-collection"]
+  "order": [
+    "collection-header",
+    "main-collection"
+  ]
 }
