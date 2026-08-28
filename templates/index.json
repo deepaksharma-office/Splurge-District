@@ -43,9 +43,9 @@
               "type": "_hero-image",
               "name": "Image",
               "settings": {
-                "image": "shopify://shop_images/dbebfbc3e6166cc392df73796057a4cd037917ed.png",
+                "image": "shopify://shop_images/dbebfbc3e6166cc392df73796057a4cd037917ed_1.png",
                 "width": 500,
-                "width_mobile": 180,
+                "width_mobile": 200,
                 "alignment": "flex-start",
                 "mobile_alignment": "flex-start",
                 "border_radius": 0,
@@ -565,7 +565,7 @@
         "image_mask": "none",
         "image_position": "right",
         "color_background": "#000000",
-        "color_text": "#FFFFFF",
+        "color_text": "#ffffff",
         "top_padding": true,
         "bottom_padding": true
       }
